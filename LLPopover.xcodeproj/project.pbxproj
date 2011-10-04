@@ -1,0 +1,347 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A362B60A143859B300BD45EE /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = A362B609143859B300BD45EE /* Prefix.pch */; };
+		A362B61B14385A0100BD45EE /* LLPopover+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = A362B61014385A0100BD45EE /* LLPopover+Private.h */; };
+		A362B61C14385A0100BD45EE /* LLPopover.h in Headers */ = {isa = PBXBuildFile; fileRef = A362B61114385A0100BD45EE /* LLPopover.h */; };
+		A362B61D14385A0100BD45EE /* LLPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = A362B61214385A0100BD45EE /* LLPopover.m */; };
+		A362B61E14385A0100BD45EE /* LLPopoverLayout+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = A362B61314385A0100BD45EE /* LLPopoverLayout+Private.h */; };
+		A362B61F14385A0100BD45EE /* LLPopoverLayout+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = A362B61414385A0100BD45EE /* LLPopoverLayout+Private.m */; };
+		A362B62014385A0100BD45EE /* LLPopoverLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = A362B61514385A0100BD45EE /* LLPopoverLayout.h */; };
+		A362B62114385A0100BD45EE /* LLPopoverLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = A362B61614385A0100BD45EE /* LLPopoverLayout.m */; };
+		A362B62214385A0100BD45EE /* LLPopoverView+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = A362B61714385A0100BD45EE /* LLPopoverView+Private.h */; };
+		A362B62314385A0100BD45EE /* LLPopoverView+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = A362B61814385A0100BD45EE /* LLPopoverView+Private.m */; };
+		A362B62414385A0100BD45EE /* LLPopoverView.h in Headers */ = {isa = PBXBuildFile; fileRef = A362B61914385A0100BD45EE /* LLPopoverView.h */; };
+		A362B62514385A0100BD45EE /* LLPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = A362B61A14385A0100BD45EE /* LLPopoverView.m */; };
+		A362B62B14385A6200BD45EE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A362B62A14385A6200BD45EE /* UIKit.framework */; };
+		A362B62E14385ABA00BD45EE /* LLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A362B62C14385ABA00BD45EE /* LLUtils.m */; };
+		A362B62F14385ABA00BD45EE /* LLUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = A362B62D14385ABA00BD45EE /* LLUtils.h */; };
+		A362B63214385B0300BD45EE /* LLStatusBarStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = A362B63014385B0300BD45EE /* LLStatusBarStatus.m */; };
+		A362B63314385B0300BD45EE /* LLStatusBarStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = A362B63114385B0300BD45EE /* LLStatusBarStatus.h */; };
+		A362B63514385B1500BD45EE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A362B63414385B1400BD45EE /* QuartzCore.framework */; };
+		A3DA5DF71439BE6900CA2776 /* LLDimmingView.h in Headers */ = {isa = PBXBuildFile; fileRef = A3DA5DF41439BE6900CA2776 /* LLDimmingView.h */; };
+		A3DA5DF81439BE6900CA2776 /* LLDimmingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DA5DF51439BE6900CA2776 /* LLDimmingView.m */; };
+		A3F918A814385900006D7F26 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F918A714385900006D7F26 /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A362B609143859B300BD45EE /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = SOURCE_ROOT; };
+		A362B61014385A0100BD45EE /* LLPopover+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LLPopover+Private.h"; sourceTree = "<group>"; };
+		A362B61114385A0100BD45EE /* LLPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPopover.h; sourceTree = "<group>"; };
+		A362B61214385A0100BD45EE /* LLPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLPopover.m; sourceTree = "<group>"; };
+		A362B61314385A0100BD45EE /* LLPopoverLayout+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LLPopoverLayout+Private.h"; sourceTree = "<group>"; };
+		A362B61414385A0100BD45EE /* LLPopoverLayout+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LLPopoverLayout+Private.m"; sourceTree = "<group>"; };
+		A362B61514385A0100BD45EE /* LLPopoverLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPopoverLayout.h; sourceTree = "<group>"; };
+		A362B61614385A0100BD45EE /* LLPopoverLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLPopoverLayout.m; sourceTree = "<group>"; };
+		A362B61714385A0100BD45EE /* LLPopoverView+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LLPopoverView+Private.h"; sourceTree = "<group>"; };
+		A362B61814385A0100BD45EE /* LLPopoverView+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LLPopoverView+Private.m"; sourceTree = "<group>"; };
+		A362B61914385A0100BD45EE /* LLPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPopoverView.h; sourceTree = "<group>"; };
+		A362B61A14385A0100BD45EE /* LLPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLPopoverView.m; sourceTree = "<group>"; };
+		A362B62A14385A6200BD45EE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A362B62C14385ABA00BD45EE /* LLUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLUtils.m; sourceTree = "<group>"; };
+		A362B62D14385ABA00BD45EE /* LLUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLUtils.h; sourceTree = "<group>"; };
+		A362B63014385B0300BD45EE /* LLStatusBarStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLStatusBarStatus.m; sourceTree = "<group>"; };
+		A362B63114385B0300BD45EE /* LLStatusBarStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLStatusBarStatus.h; sourceTree = "<group>"; };
+		A362B63414385B1400BD45EE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A3DA5DF41439BE6900CA2776 /* LLDimmingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLDimmingView.h; sourceTree = "<group>"; };
+		A3DA5DF51439BE6900CA2776 /* LLDimmingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLDimmingView.m; sourceTree = "<group>"; };
+		A3F918A414385900006D7F26 /* libLLPopover.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLLPopover.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3F918A714385900006D7F26 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A3F918A114385900006D7F26 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A362B63514385B1500BD45EE /* QuartzCore.framework in Frameworks */,
+				A362B62B14385A6200BD45EE /* UIKit.framework in Frameworks */,
+				A3F918A814385900006D7F26 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A362B60F14385A0100BD45EE /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				A362B62D14385ABA00BD45EE /* LLUtils.h */,
+				A362B62C14385ABA00BD45EE /* LLUtils.m */,
+				A362B63014385B0300BD45EE /* LLStatusBarStatus.m */,
+				A362B63114385B0300BD45EE /* LLStatusBarStatus.h */,
+				A362B61014385A0100BD45EE /* LLPopover+Private.h */,
+				A362B61114385A0100BD45EE /* LLPopover.h */,
+				A362B61214385A0100BD45EE /* LLPopover.m */,
+				A362B61314385A0100BD45EE /* LLPopoverLayout+Private.h */,
+				A362B61414385A0100BD45EE /* LLPopoverLayout+Private.m */,
+				A362B61514385A0100BD45EE /* LLPopoverLayout.h */,
+				A362B61614385A0100BD45EE /* LLPopoverLayout.m */,
+				A362B61714385A0100BD45EE /* LLPopoverView+Private.h */,
+				A362B61814385A0100BD45EE /* LLPopoverView+Private.m */,
+				A362B61914385A0100BD45EE /* LLPopoverView.h */,
+				A362B61A14385A0100BD45EE /* LLPopoverView.m */,
+			);
+			path = Sources;
+			sourceTree = SOURCE_ROOT;
+		};
+		A3DA5DB51439BA6500CA2776 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				A3DA5DD11439BE6900CA2776 /* LLDimmingView */,
+			);
+			path = Libs;
+			sourceTree = SOURCE_ROOT;
+		};
+		A3DA5DD11439BE6900CA2776 /* LLDimmingView */ = {
+			isa = PBXGroup;
+			children = (
+				A3DA5DF41439BE6900CA2776 /* LLDimmingView.h */,
+				A3DA5DF51439BE6900CA2776 /* LLDimmingView.m */,
+			);
+			path = LLDimmingView;
+			sourceTree = "<group>";
+		};
+		A3F9189914385900006D7F26 = {
+			isa = PBXGroup;
+			children = (
+				A3F918A914385900006D7F26 /* LLPopover */,
+				A3F918A614385900006D7F26 /* Frameworks */,
+				A3F918A514385900006D7F26 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A3F918A514385900006D7F26 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A3F918A414385900006D7F26 /* libLLPopover.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A3F918A614385900006D7F26 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A362B63414385B1400BD45EE /* QuartzCore.framework */,
+				A362B62A14385A6200BD45EE /* UIKit.framework */,
+				A3F918A714385900006D7F26 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A3F918A914385900006D7F26 /* LLPopover */ = {
+			isa = PBXGroup;
+			children = (
+				A3DA5DB51439BA6500CA2776 /* Libs */,
+				A362B60F14385A0100BD45EE /* Sources */,
+				A3F918AA14385900006D7F26 /* Supporting Files */,
+			);
+			path = LLPopover;
+			sourceTree = "<group>";
+		};
+		A3F918AA14385900006D7F26 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A362B609143859B300BD45EE /* Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		A3F918A214385900006D7F26 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A362B60A143859B300BD45EE /* Prefix.pch in Headers */,
+				A362B61B14385A0100BD45EE /* LLPopover+Private.h in Headers */,
+				A362B61C14385A0100BD45EE /* LLPopover.h in Headers */,
+				A362B61E14385A0100BD45EE /* LLPopoverLayout+Private.h in Headers */,
+				A362B62014385A0100BD45EE /* LLPopoverLayout.h in Headers */,
+				A362B62214385A0100BD45EE /* LLPopoverView+Private.h in Headers */,
+				A362B62414385A0100BD45EE /* LLPopoverView.h in Headers */,
+				A362B62F14385ABA00BD45EE /* LLUtils.h in Headers */,
+				A362B63314385B0300BD45EE /* LLStatusBarStatus.h in Headers */,
+				A3DA5DF71439BE6900CA2776 /* LLDimmingView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		A3F918A314385900006D7F26 /* LLPopover */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A3F918B114385900006D7F26 /* Build configuration list for PBXNativeTarget "LLPopover" */;
+			buildPhases = (
+				A3F918A014385900006D7F26 /* Sources */,
+				A3F918A114385900006D7F26 /* Frameworks */,
+				A3F918A214385900006D7F26 /* Headers */,
+				A362B653143864FC00BD45EE /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LLPopover;
+			productName = LLPopover;
+			productReference = A3F918A414385900006D7F26 /* libLLPopover.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A3F9189B14385900006D7F26 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Liberati Luca";
+			};
+			buildConfigurationList = A3F9189E14385900006D7F26 /* Build configuration list for PBXProject "LLPopover" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A3F9189914385900006D7F26;
+			productRefGroup = A3F918A514385900006D7F26 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A3F918A314385900006D7F26 /* LLPopover */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A362B653143864FC00BD45EE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "mkdir -p Docs/html/\nrm -rf Docs/html/*\nappledoc --project-name $PROJECT_NAME --output Docs/ .\ncp -a ~/Library/Developer/Shared/Documentation/DocSets/com.libluc.$PROJECT_NAME.docset Docs\ncp -a Docs/com.libluc.$PROJECT_NAME.docset/Contents/Resources/Documents/ Docs/html\nrm Docs/docset-installed.txt";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A3F918A014385900006D7F26 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A362B61D14385A0100BD45EE /* LLPopover.m in Sources */,
+				A362B61F14385A0100BD45EE /* LLPopoverLayout+Private.m in Sources */,
+				A362B62114385A0100BD45EE /* LLPopoverLayout.m in Sources */,
+				A362B62314385A0100BD45EE /* LLPopoverView+Private.m in Sources */,
+				A362B62514385A0100BD45EE /* LLPopoverView.m in Sources */,
+				A362B62E14385ABA00BD45EE /* LLUtils.m in Sources */,
+				A362B63214385B0300BD45EE /* LLStatusBarStatus.m in Sources */,
+				A3DA5DF81439BE6900CA2776 /* LLDimmingView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A3F918AF14385900006D7F26 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		A3F918B014385900006D7F26 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A3F918B214385900006D7F26 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/LLPopover.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Prefix.pch;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		A3F918B314385900006D7F26 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/LLPopover.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Prefix.pch;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A3F9189E14385900006D7F26 /* Build configuration list for PBXProject "LLPopover" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3F918AF14385900006D7F26 /* Debug */,
+				A3F918B014385900006D7F26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A3F918B114385900006D7F26 /* Build configuration list for PBXNativeTarget "LLPopover" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3F918B214385900006D7F26 /* Debug */,
+				A3F918B314385900006D7F26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A3F9189B14385900006D7F26 /* Project object */;
+}

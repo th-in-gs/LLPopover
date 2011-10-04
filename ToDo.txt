@@ -1,0 +1,4 @@
+??? is for "it's that useful???" ideas.
+
+- Landscape support
+- ??? More customizations
