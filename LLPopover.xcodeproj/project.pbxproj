@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		A321BF17143DAD41008EF3A2 /* GenDocs */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = A321BF18143DAD41008EF3A2 /* Build configuration list for PBXAggregateTarget "GenDocs" */;
+			buildPhases = (
+				A321BF1B143DAD8A008EF3A2 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = GenDocs;
+			productName = GenDocs;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		A362B60A143859B300BD45EE /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = A362B609143859B300BD45EE /* Prefix.pch */; };
 		A362B61B14385A0100BD45EE /* LLPopover+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = A362B61014385A0100BD45EE /* LLPopover+Private.h */; };
@@ -183,7 +197,6 @@
 				A3F918A014385900006D7F26 /* Sources */,
 				A3F918A114385900006D7F26 /* Frameworks */,
 				A3F918A214385900006D7F26 /* Headers */,
-				A362B653143864FC00BD45EE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -200,6 +213,7 @@
 		A3F9189B14385900006D7F26 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = "Liberati Luca";
 			};
 			buildConfigurationList = A3F9189E14385900006D7F26 /* Build configuration list for PBXProject "LLPopover" */;
@@ -215,12 +229,13 @@
 			projectRoot = "";
 			targets = (
 				A3F918A314385900006D7F26 /* LLPopover */,
+				A321BF17143DAD41008EF3A2 /* GenDocs */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A362B653143864FC00BD45EE /* ShellScript */ = {
+		A321BF1B143DAD8A008EF3A2 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -254,6 +269,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		A321BF19143DAD41008EF3A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A321BF1A143DAD41008EF3A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		A3F918AF14385900006D7F26 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -302,6 +331,7 @@
 				DSTROOT = /tmp/LLPopover.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Prefix.pch;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -314,6 +344,7 @@
 				DSTROOT = /tmp/LLPopover.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Prefix.pch;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -323,6 +354,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A321BF18143DAD41008EF3A2 /* Build configuration list for PBXAggregateTarget "GenDocs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A321BF19143DAD41008EF3A2 /* Debug */,
+				A321BF1A143DAD41008EF3A2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		A3F9189E14385900006D7F26 /* Build configuration list for PBXProject "LLPopover" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
