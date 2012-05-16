@@ -11,6 +11,19 @@
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+/* 
+ Modifications copyright (c) 2012 Things Made Out Of Other Things Ltd, http://th.ingsmadeoutofotherthin.gs/
+ 
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ 
+ - The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ - The use of the Software in your (or your company) product, must include an attribution for my work in your (or your company) product (for example in the readme files, website and in the product itself).
+
+ ** It is NOT possible to have a non-attribution license to the modifications. **
+ 
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+
 #import "LLPopoverView.h"
 #import "LLPopoverView+Private.h"
 #import "LLPopover.h"
@@ -27,6 +40,7 @@
 @synthesize popover=_popover;
 @synthesize popoverLayout=_popoverLayout;
 @synthesize contentViewContainer=_contentViewContainer;
+@synthesize contentViewContainerMask=_contentViewContainerMask;
 
 
 #pragma mark - Class lifecycle
@@ -38,6 +52,7 @@
     _popover = nil;
     _popoverLayout = nil;
     
+    [_contentViewContainerMask release];
     [_contentViewContainer release];
     [_statusBarStatus release];
     
@@ -84,9 +99,9 @@
 {
     [self updateArrowOrigin];
     
-    CGRect contentFrame = self.contentViewContainer.frame;
+    CGRect contentFrame = self.contentViewContainerMask.frame;
     contentFrame.origin = self.popoverLayout.popoverContentOffset;
-    self.contentViewContainer.frame = contentFrame;
+    self.contentViewContainerMask.frame = contentFrame;
     
     
     UIBezierPath *popoverPath = [self popoverPath];
@@ -120,18 +135,60 @@
 
 - (void)setupContentView
 {
-    CGRect containerViewFrame = { 0.0f, 0.0f, self.popoverLayout.contentSize.width, self.popoverLayout.contentSize.height };
+    UIEdgeInsets insets = self.popoverLayout.contentInsets;
     
-    //TODO: move to it's own class to optimize rendering
-    //TODO: add an inner shadow using CAGradientLayer
-    _contentViewContainer = [[UIView alloc] initWithFrame:containerViewFrame];
+    CGRect containerViewFrame = self.shapeFrame;
+    containerViewFrame = UIEdgeInsetsInsetRect(containerViewFrame, insets);
     
-    self.contentViewContainer.clipsToBounds = YES;
-    self.contentViewContainer.layer.cornerRadius = 6.0f;
-    self.contentViewContainer.layer.borderColor = [[UIColor blackColor] CGColor];
-    self.contentViewContainer.layer.borderWidth = 1.0f;
+    // This view will contain the content view, and above it, a view
+    // containing the inner shadow.  It will mask out these layers
+    // to fit in the popover.
+    _contentViewContainerMask = [[UIView alloc] initWithFrame:containerViewFrame];
+    _contentViewContainerMask.clipsToBounds = YES;
+    _contentViewContainerMask.layer.cornerRadius = 6.0f;
+    CGRect contentViewContainerMaskBounds = _contentViewContainerMask.bounds;
     
-    [self addSubview:_contentViewContainer];
+    
+    // To cast the inner shadow, we create a larger view, with a thick border 
+    // that will cast the shadow.  The border will be masked out by the mask 
+    // view.
+    CGFloat shadowLayerHiddenBorderWidth = 5.0f;
+    
+    UIView *shadowView = [[UIView alloc] initWithFrame:CGRectInset(contentViewContainerMaskBounds, -shadowLayerHiddenBorderWidth, -shadowLayerHiddenBorderWidth)];
+    shadowView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    shadowView.userInteractionEnabled = NO;
+
+    // We'll use this to create the inner shadow above the content layer.
+    CALayer *shadowLayer = shadowView.layer;
+    
+    // add the shadowLayerHiddenBorderWidth so that the radius at the inside
+    // is the same.
+    shadowLayer.cornerRadius = _contentViewContainerMask.layer.cornerRadius + shadowLayerHiddenBorderWidth;
+    
+     // +1 to get the visible black line
+    shadowLayer.borderWidth = shadowLayerHiddenBorderWidth + 1.0f;
+    shadowLayer.borderColor = [[UIColor blackColor] CGColor];
+
+    // And here's the shadow!
+    shadowLayer.shadowOffset = CGSizeMake(0, 1);
+    shadowLayer.shadowOpacity = 2.0f / 3.0f;
+    shadowLayer.shadowRadius = 2.0;
+    shadowLayer.shadowColor = [[UIColor blackColor] CGColor];
+    
+    // This view will contain the real popover content.
+    _contentViewContainer = [[UIView alloc] initWithFrame:contentViewContainerMaskBounds];
+    _contentViewContainer.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
+    // Add the content view container first, so that it's below the shadow.
+    [_contentViewContainerMask addSubview:_contentViewContainer];
+    
+    // Add the shadow above the content.
+    [_contentViewContainerMask addSubview:shadowView];
+    [shadowView release];
+
+    // Phew!
+    [self addSubview:_contentViewContainerMask];
+    
 }
 
 
