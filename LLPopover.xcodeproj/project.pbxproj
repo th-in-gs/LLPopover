@@ -23,15 +23,15 @@
 /* Begin PBXBuildFile section */
 		A362B60A143859B300BD45EE /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = A362B609143859B300BD45EE /* Prefix.pch */; };
 		A362B61B14385A0100BD45EE /* LLPopover+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = A362B61014385A0100BD45EE /* LLPopover+Private.h */; };
-		A362B61C14385A0100BD45EE /* LLPopover.h in Headers */ = {isa = PBXBuildFile; fileRef = A362B61114385A0100BD45EE /* LLPopover.h */; };
+		A362B61C14385A0100BD45EE /* LLPopover.h in Headers */ = {isa = PBXBuildFile; fileRef = A362B61114385A0100BD45EE /* LLPopover.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A362B61D14385A0100BD45EE /* LLPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = A362B61214385A0100BD45EE /* LLPopover.m */; };
 		A362B61E14385A0100BD45EE /* LLPopoverLayout+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = A362B61314385A0100BD45EE /* LLPopoverLayout+Private.h */; };
 		A362B61F14385A0100BD45EE /* LLPopoverLayout+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = A362B61414385A0100BD45EE /* LLPopoverLayout+Private.m */; };
-		A362B62014385A0100BD45EE /* LLPopoverLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = A362B61514385A0100BD45EE /* LLPopoverLayout.h */; };
+		A362B62014385A0100BD45EE /* LLPopoverLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = A362B61514385A0100BD45EE /* LLPopoverLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A362B62114385A0100BD45EE /* LLPopoverLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = A362B61614385A0100BD45EE /* LLPopoverLayout.m */; };
 		A362B62214385A0100BD45EE /* LLPopoverView+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = A362B61714385A0100BD45EE /* LLPopoverView+Private.h */; };
 		A362B62314385A0100BD45EE /* LLPopoverView+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = A362B61814385A0100BD45EE /* LLPopoverView+Private.m */; };
-		A362B62414385A0100BD45EE /* LLPopoverView.h in Headers */ = {isa = PBXBuildFile; fileRef = A362B61914385A0100BD45EE /* LLPopoverView.h */; };
+		A362B62414385A0100BD45EE /* LLPopoverView.h in Headers */ = {isa = PBXBuildFile; fileRef = A362B61914385A0100BD45EE /* LLPopoverView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A362B62514385A0100BD45EE /* LLPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = A362B61A14385A0100BD45EE /* LLPopoverView.m */; };
 		A362B62B14385A6200BD45EE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A362B62A14385A6200BD45EE /* UIKit.framework */; };
 		A362B62E14385ABA00BD45EE /* LLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A362B62C14385ABA00BD45EE /* LLUtils.m */; };
@@ -39,7 +39,7 @@
 		A362B63214385B0300BD45EE /* LLStatusBarStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = A362B63014385B0300BD45EE /* LLStatusBarStatus.m */; };
 		A362B63314385B0300BD45EE /* LLStatusBarStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = A362B63114385B0300BD45EE /* LLStatusBarStatus.h */; };
 		A362B63514385B1500BD45EE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A362B63414385B1400BD45EE /* QuartzCore.framework */; };
-		A3DA5DF71439BE6900CA2776 /* LLDimmingView.h in Headers */ = {isa = PBXBuildFile; fileRef = A3DA5DF41439BE6900CA2776 /* LLDimmingView.h */; };
+		A3DA5DF71439BE6900CA2776 /* LLDimmingView.h in Headers */ = {isa = PBXBuildFile; fileRef = A3DA5DF41439BE6900CA2776 /* LLDimmingView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A3DA5DF81439BE6900CA2776 /* LLDimmingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DA5DF51439BE6900CA2776 /* LLDimmingView.m */; };
 		A3F918A814385900006D7F26 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F918A714385900006D7F26 /* Foundation.framework */; };
 /* End PBXBuildFile section */
@@ -334,6 +334,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -347,6 +348,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -361,6 +363,7 @@
 				A321BF1A143DAD41008EF3A2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A3F9189E14385900006D7F26 /* Build configuration list for PBXProject "LLPopover" */ = {
 			isa = XCConfigurationList;
