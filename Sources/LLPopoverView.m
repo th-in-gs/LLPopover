@@ -126,8 +126,8 @@
     // popover shadow
     self.layer.shadowPath = [popoverPath CGPath];
     self.layer.shadowOffset = CGSizeMake(0.0f, 4.0f);
-    self.layer.shadowOpacity = 1.0f;
-    self.layer.shadowRadius = 18.0f;
+    self.layer.shadowOpacity = 2.0f / 3.0f;
+    self.layer.shadowRadius = 20.0f;
 }
 
 
