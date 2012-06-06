@@ -71,7 +71,7 @@
     self.popoverFrameInsets = UIEdgeInsetsMake(0.0f, 5.0f, 0.0f, 5.0f);
     self.popoverMaxSize = CGSizeMake(300.0f, 420.0f);
     self.popoverMinSize = CGSizeMake(120.0f, 70.0f);
-    self.targetOffset = 5.0f;
+    self.targetOffset = 0.0f;
     self.targetRect = CGRectZero;
     
     [self addObserver:self forKeyPath:@"targetRect" options:NSKeyValueObservingOptionNew context:NULL];
