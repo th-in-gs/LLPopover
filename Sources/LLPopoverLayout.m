@@ -68,7 +68,7 @@
     self.cornerRadius = 8.0f;
     self.contentInsets = UIEdgeInsetsMake(5.0f, 5.0f, 5.0f, 5.0f);
     self.contentSize = CGSizeMake(100.0f, 80.0f);
-    self.popoverFrameInsets = UIEdgeInsetsMake(0.0f, 5.0f, 0.0f, 5.0f);
+    self.popoverFrameInsets = UIEdgeInsetsMake(5.0f, 5.0f, 5.0f, 5.0f);
     self.popoverMaxSize = CGSizeMake(300.0f, 420.0f);
     self.popoverMinSize = CGSizeMake(120.0f, 70.0f);
     self.targetOffset = 0.0f;
@@ -193,25 +193,25 @@
     }
     
     // move the frame based on targetRect and the window bounds
-    CGRect windowBounds = window.bounds;
+    CGRect applicationFrame = [[window screen] applicationFrame];
+    CGRect windowBounds = CGRectIntersection(applicationFrame, window.bounds);
     
-    if (CGRectContainsRect(windowBounds, frame) == NO)
-    {
-        CGFloat screenMaxX = CGRectGetMaxX(windowBounds);
-        CGFloat frameMaxX = CGRectGetMaxX(frame);
-        
-        CGFloat diff = frameMaxX - screenMaxX;
-        
-        if (diff < 0)
-        {
-            frame.origin.x = self.popoverFrameInsets.left;
-        }
-        else
-        {
-            frame.origin.x -= diff + self.popoverFrameInsets.right;
-        }
+    if (CGRectGetMinX(frame) < CGRectGetMinX(windowBounds) + self.popoverFrameInsets.left) {
+        frame.origin.x = CGRectGetMinX(windowBounds) + self.popoverFrameInsets.left;
+    } else if (CGRectGetMaxX(frame) > CGRectGetMaxX(windowBounds) - self.popoverFrameInsets.right) {
+        frame.origin.x = CGRectGetMaxX(windowBounds) - CGRectGetWidth(frame) - self.popoverFrameInsets.right;
     }
     
+    if (CGRectGetMinY(frame) < CGRectGetMinY(windowBounds) + self.popoverFrameInsets.top) {
+        CGFloat diff = CGRectGetMinY(windowBounds) + self.popoverFrameInsets.top - CGRectGetMinY(frame);
+        frame.origin.y += diff;
+        frame.size.height -= diff;
+    } else if (CGRectGetMaxY(frame) > CGRectGetMaxY(windowBounds) - self.popoverFrameInsets.bottom) {
+        CGFloat diff = self.popoverFrameInsets.bottom - CGRectGetMinY(frame);
+        frame.origin.y -= diff;
+        frame.size.height -= diff;
+    }
+        
     _popoverFrame = frame;
 }
 
