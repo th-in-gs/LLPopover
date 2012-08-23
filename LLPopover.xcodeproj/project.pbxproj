@@ -213,7 +213,7 @@
 		A3F9189B14385900006D7F26 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Liberati Luca";
 			};
 			buildConfigurationList = A3F9189E14385900006D7F26 /* Build configuration list for PBXProject "LLPopover" */;
