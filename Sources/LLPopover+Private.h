@@ -12,8 +12,8 @@
 */
 
 @interface LLPopover ()
-@property (nonatomic, retain) LLPopoverView *popoverView;
-@property (nonatomic, retain) LLDimmingView *dimmingView;
+@property (nonatomic, strong) LLPopoverView *popoverView;
+@property (nonatomic, strong) LLDimmingView *dimmingView;
 @property (nonatomic, copy) LLPopoverDidShowHandler didShowHandler;
 @property (nonatomic, copy) LLPopoverDidHideHandler didHideHandler;
 @property (nonatomic, assign, readwrite) BOOL isVisible;

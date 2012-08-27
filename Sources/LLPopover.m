@@ -49,12 +49,6 @@
     
     _didShowHandler = nil;
     _didHideHandler = nil;
-    
-    [_popoverLayout release];
-    [_dimmingView release];
-    [_popoverView release];
-    
-    [super dealloc];
 }
 
 - (id)init
@@ -64,8 +58,9 @@
     _dimmingView = [[LLDimmingView alloc] initWithFrame:[[UIScreen mainScreen] bounds]
                                            dimmingColor:nil];
     
+    __weak LLPopover *wSelf = self;
     [_dimmingView setTapBlock:^{
-        [self dismissPopoverAnimated:YES];
+        [wSelf dismissPopoverAnimated:YES];
     }];
     
     _isVisible = NO;
@@ -107,7 +102,7 @@
                                        didShowHandler:didShowHandler
                                        didHideHandler:didHideHandler];
     
-    return [popover autorelease];
+    return popover;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context

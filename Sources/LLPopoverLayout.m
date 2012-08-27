@@ -54,10 +54,7 @@
 - (void)dealloc
 {
     [self removeObserver:self forKeyPath:@"targetRect"];
-    
     _targetView = nil;
-    
-    [super dealloc];
 }
 
 - (id)init

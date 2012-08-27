@@ -59,7 +59,7 @@ typedef enum
 @property (nonatomic, assign) CGRect targetRect;
 
 /** the target that contains targetRect */
-@property (nonatomic, assign) UIView *targetView;
+@property (nonatomic, weak) UIView *targetView;
 
 - (void)updateArrowDirection;
 - (void)updatePopoverFrame;

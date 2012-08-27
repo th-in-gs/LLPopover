@@ -17,9 +17,9 @@
 
 @interface LLPopoverView : UIView
 
-@property (nonatomic, assign, readonly) LLPopover *popover;
-@property (nonatomic, assign, readonly) LLPopoverLayout *popoverLayout;
-@property (nonatomic, retain, readonly) UIView *contentViewContainer;
+@property (nonatomic, weak, readonly) LLPopover *popover;
+@property (nonatomic, weak, readonly) LLPopoverLayout *popoverLayout;
+@property (nonatomic, strong, readonly) UIView *contentViewContainer;
 
 - (id)initWithPopover:(LLPopover *)popover popoverLayout:(LLPopoverLayout *)popoverLayout;
 

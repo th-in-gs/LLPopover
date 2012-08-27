@@ -27,13 +27,13 @@ typedef void(^LLPopoverDidHideHandler)();
 @interface LLPopover : NSObject
 
 /** The view controller that will be visible inside the popover */
-@property (nonatomic, retain) UIViewController *contentVC;
+@property (nonatomic, strong) UIViewController *contentVC;
 
 /** The model object for the popover
  
  You can modify it's properties to change various aspects of the popover creation
  */
-@property (nonatomic, retain, readonly) LLPopoverLayout *popoverLayout;
+@property (nonatomic, strong, readonly) LLPopoverLayout *popoverLayout;
 
 /** If the popover is presented this will return YES */
 @property (nonatomic, assign, readonly) BOOL isVisible;

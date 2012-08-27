@@ -31,8 +31,8 @@
 
 
 @interface LLPopoverView ()
-@property (nonatomic, retain) UIView *contentViewContainerMask;
-@property (nonatomic, retain) LLStatusBarStatus *statusBarStatus;
+@property (nonatomic, strong) UIView *contentViewContainerMask;
+@property (nonatomic, strong) LLStatusBarStatus *statusBarStatus;
 @property (nonatomic, assign) CGPoint arrowOrigin;
 
 - (void)setupContentView;

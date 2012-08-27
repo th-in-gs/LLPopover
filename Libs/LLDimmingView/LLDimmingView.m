@@ -29,12 +29,6 @@
 
 #pragma mark - Class lifecycle
 
-- (void)dealloc
-{
-    [_displayedBlock release];
-    [_tapBlock release];
-    [super dealloc];
-}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -54,7 +48,6 @@
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] init];
     [tapGesture addTarget:self action:@selector(handleTap:)];
     [self addGestureRecognizer:tapGesture];
-    [tapGesture release];
     
     return self;
 }
@@ -109,7 +102,7 @@
                                 displayed:displayedBlock
                                       tap:tapBlock];
     
-    return [view autorelease];
+    return view;
 }
 
 

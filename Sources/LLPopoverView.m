@@ -51,12 +51,6 @@
     
     _popover = nil;
     _popoverLayout = nil;
-    
-    [_contentViewContainerMask release];
-    [_contentViewContainer release];
-    [_statusBarStatus release];
-    
-    [super dealloc];
 }
 
 - (id)initWithPopover:(LLPopover *)popover popoverLayout:(LLPopoverLayout *)popoverLayout
@@ -184,7 +178,6 @@
     
     // Add the shadow above the content.
     [_contentViewContainerMask addSubview:shadowView];
-    [shadowView release];
 
     // Phew!
     [self addSubview:_contentViewContainerMask];
@@ -199,7 +192,6 @@
     if (animated)
     {
         [UIView animateWithDuration:0.3 animations:^{
-            
             self.frame = newFrame;
         }];
     }
