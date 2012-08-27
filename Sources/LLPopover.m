@@ -180,14 +180,21 @@
     
     [_dimmingView showAnimated:NO];
     
-    if (!animated)
+    if (
+        
+        // In reality, system popovers appear instantaneously even when animated.
+        YES ||
+        
+        !animated)
     {
+        [window addSubview:_popoverView];
+        
         self.isVisible = YES;
     }
     else
     {
         [UIView transitionWithView:window
-                          duration:0.1f
+                          duration:0.0f
                            options:UIViewAnimationOptionTransitionCrossDissolve
                         animations:^{
                             [window addSubview:_popoverView];
