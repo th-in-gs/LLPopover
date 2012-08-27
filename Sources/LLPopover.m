@@ -171,27 +171,24 @@
     UIWindow *window = [targetView window];
     
     [window addSubview:_dimmingView];
-    [window addSubview:_popoverView];
     
     [_dimmingView showAnimated:NO];
     
-    if (animated == NO)
+    if (!animated)
     {
         self.isVisible = YES;
     }
     else
     {
-        _popoverView.alpha = 0.0f;
-        
-        [UIView animateWithDuration:0.1
-                              delay:0
-                            options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseOut
-                         animations:^{
-                             _popoverView.alpha = 1.0f;
-                         }
-                         completion:^(BOOL finished) {
-                             self.isVisible = YES;
-                         }];
+        [UIView transitionWithView:window
+                          duration:0.1f
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        animations:^{
+                            [window addSubview:_popoverView];
+                        }
+                        completion:^(BOOL finished) {
+                            self.isVisible = YES;
+                        }];
     }
 }
 
@@ -199,7 +196,7 @@
 {
     [_dimmingView hideAnimated:NO];
     
-    if (animated == NO)
+    if (!animated)
     {
         [_popoverView removeFromSuperview];
         
@@ -207,16 +204,15 @@
     }
     else
     {
-        [UIView animateWithDuration:0.2
-                              delay:0
-                            options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseIn
-                         animations:^{
-                             _popoverView.alpha = 0.0f;
-                         }
-                         completion:^(BOOL finished) {
-                             [_popoverView removeFromSuperview];
-                             self.isVisible = NO;
-                         }];
+        [UIView transitionWithView:_popoverView.superview
+                          duration:1.0f / 3.0f
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        animations:^{
+                            [_popoverView removeFromSuperview];
+                        }
+                        completion:^(BOOL finished) {
+                            self.isVisible = NO;
+                        }];
     }
 }
 
