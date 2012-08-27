@@ -25,14 +25,24 @@
 */
 
 #import "LLPopoverLayout.h"
-#import "LLPopoverLayout+Private.h"
 #import "LLUtils.h"
 
+struct LLScreenMatrix
+{
+    CGRect topLeft;
+    CGRect topCenter;
+    CGRect topRight;
+    CGRect centerLeft;
+    CGRect center;
+    CGRect centerRight;
+    CGRect bottomLeft;
+    CGRect bottomCenter;
+    CGRect bottomRight;
+};
+typedef struct LLScreenMatrix LLScreenMatrix;
 
 @implementation LLPopoverLayout
 
-// private
-@synthesize screenMatrix=_screenMatrix;
 // public
 @synthesize arrowDirection=_arrowDirection;
 @synthesize arrowSize=_arrowSize;
@@ -124,6 +134,83 @@
 }
 
 
+#pragma mark - Private Methods
+
+- (LLScreenMatrix)calculateScreenMatrix
+{
+    UIWindow *window = self.targetView.window;
+    
+    LLScreenMatrix screenMatrix;
+    
+    // segment of a 3x3 matrix
+    CGFloat segmentWidth = ceilf((window.bounds.size.width / 3) * 100) / 100;
+    CGFloat segmentHeight = ceilf((window.bounds.size.height / 3) * 100) / 100;
+    
+    CGSize segmentSize = CGSizeMake(segmentWidth, segmentHeight);
+    
+    for (int column = 0; column <= 2; column++)
+    {
+        for (int row = 0; row <= 2; row++)
+        {
+            CGRect segmentRect = CGRectZero;
+            
+            segmentRect.origin.x = column * segmentSize.width;
+            segmentRect.origin.y = row * segmentSize.height;
+            segmentRect.size = segmentSize;
+            
+            if (column == 0)
+            {
+                if (row == 0)
+                {
+                    screenMatrix.topLeft = segmentRect;
+                }
+                else if (row == 1)
+                {
+                    screenMatrix.centerLeft = segmentRect;
+                }
+                else if (row == 2)
+                {
+                    screenMatrix.bottomLeft = segmentRect;
+                }
+                
+            }
+            else if(column == 1)
+            {
+                if (row == 0)
+                {
+                    screenMatrix.topCenter = segmentRect;
+                }
+                else if (row == 1)
+                {
+                    screenMatrix.center = segmentRect;
+                }
+                else if (row == 2)
+                {
+                    screenMatrix.bottomCenter = segmentRect;
+                }
+            }
+            else if(column == 2)
+            {
+                if (row == 0)
+                {
+                    screenMatrix.topRight = segmentRect;
+                }
+                else if (row == 1)
+                {
+                    screenMatrix.centerRight = segmentRect;
+                }
+                else if (row == 2)
+                {
+                    screenMatrix.bottomRight = segmentRect;
+                }
+            }
+        }
+    }
+    
+    return screenMatrix;
+}
+
+
 #pragma mark - Public methods
 
 - (void)updateArrowDirection
@@ -132,23 +219,23 @@
     
     CGRect convertedTargetRect = [self.targetView convertRect:self.targetRect toView:nil];
     
-    self.screenMatrix = [self calculateScreenMatrix];
+    LLScreenMatrix screenMatrix = [self calculateScreenMatrix];
     
-    if (CGRectIntersectsRect(self.screenMatrix.topLeft, convertedTargetRect) ||
-        CGRectIntersectsRect(self.screenMatrix.topCenter, convertedTargetRect) ||
-        CGRectIntersectsRect(self.screenMatrix.topRight, convertedTargetRect))
+    if (CGRectIntersectsRect(screenMatrix.topLeft, convertedTargetRect) ||
+        CGRectIntersectsRect(screenMatrix.topCenter, convertedTargetRect) ||
+        CGRectIntersectsRect(screenMatrix.topRight, convertedTargetRect))
     {
         arrowDirection = LLPopoverArrowDirectionUp;
     }
-    else if (CGRectIntersectsRect(self.screenMatrix.centerLeft, convertedTargetRect) ||
-             CGRectIntersectsRect(self.screenMatrix.center, convertedTargetRect) ||
-             CGRectIntersectsRect(self.screenMatrix.centerRight, convertedTargetRect))
+    else if (CGRectIntersectsRect(screenMatrix.centerLeft, convertedTargetRect) ||
+             CGRectIntersectsRect(screenMatrix.center, convertedTargetRect) ||
+             CGRectIntersectsRect(screenMatrix.centerRight, convertedTargetRect))
     {
         arrowDirection = LLPopoverArrowDirectionDown;
     }
-    else if (CGRectIntersectsRect(self.screenMatrix.bottomLeft, convertedTargetRect) ||
-             CGRectIntersectsRect(self.screenMatrix.bottomCenter, convertedTargetRect) ||
-             CGRectIntersectsRect(self.screenMatrix.bottomRight, convertedTargetRect))
+    else if (CGRectIntersectsRect(screenMatrix.bottomLeft, convertedTargetRect) ||
+             CGRectIntersectsRect(screenMatrix.bottomCenter, convertedTargetRect) ||
+             CGRectIntersectsRect(screenMatrix.bottomRight, convertedTargetRect))
     {
         arrowDirection = LLPopoverArrowDirectionDown;
     }

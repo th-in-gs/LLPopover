@@ -25,19 +25,27 @@
 */
 
 #import "LLPopover.h"
-#import "LLPopover+Private.h"
 #import "LLPopoverView.h"
 #import "LLDimmingView.h"
 
-@implementation LLPopover
+@interface LLPopover ()
 
-// private
-@synthesize didShowHandler=_didShowHandler;
-@synthesize didHideHandler=_didHideHandler;
+@property (nonatomic, strong) UIViewController *contentViewController;
+@property (nonatomic, assign, readwrite) BOOL isVisible;
+
+@end
+
+
+@implementation LLPopover {
+    LLPopoverDidShowHandler _didShowHandler;
+    LLPopoverDidHideHandler _didHideHandler;
+    
+    LLDimmingView *_dimmingView;
+    LLPopoverView *_popoverView;
+}
+
 // public
 @synthesize popoverLayout=_popoverLayout;
-@synthesize popoverView=_popoverView;
-@synthesize dimmingView=_dimmingView;
 @synthesize contentViewController=_contentViewController;
 @synthesize isVisible=_isVisible;
 
@@ -89,8 +97,8 @@
     };
     self.contentViewController.view.frame = contentFrame;
     
-    self.didShowHandler = didShowHandler;
-    self.didHideHandler = didHideHandler;
+    _didShowHandler = didShowHandler;
+    _didHideHandler = didHideHandler;
     
     return self;
 }
@@ -112,16 +120,16 @@
     {
         if (self.isVisible)
         {
-            if (self.didShowHandler)
+            if (_didShowHandler)
             {
-                self.didShowHandler();
+                _didShowHandler();
             }
         }
         else
         {
-            if (self.didHideHandler)
+            if (_didHideHandler)
             {
-                self.didHideHandler();
+                _didHideHandler();
             }
         }
     }
@@ -153,19 +161,19 @@
     }
     else
     {
-        [self.popoverView.contentViewContainer.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        [_popoverView.contentViewContainer.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     }
     
-    self.contentViewController.view.frame = self.popoverView.contentViewContainer.bounds;
-    [self.popoverView.contentViewContainer addSubview:self.contentViewController.view];
+    self.contentViewController.view.frame = _popoverView.contentViewContainer.bounds;
+    [_popoverView.contentViewContainer addSubview:self.contentViewController.view];
     
     
     UIWindow *window = [targetView window];
     
-    [window addSubview:self.dimmingView];
-    [window addSubview:self.popoverView];
+    [window addSubview:_dimmingView];
+    [window addSubview:_popoverView];
     
-    [self.dimmingView showAnimated:NO];
+    [_dimmingView showAnimated:NO];
     
     if (animated == NO)
     {
@@ -173,13 +181,13 @@
     }
     else
     {
-        self.popoverView.alpha = 0.0f;
+        _popoverView.alpha = 0.0f;
         
         [UIView animateWithDuration:0.1
                               delay:0
                             options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseOut
                          animations:^{
-                             self.popoverView.alpha = 1.0f;
+                             _popoverView.alpha = 1.0f;
                          }
                          completion:^(BOOL finished) {
                              self.isVisible = YES;
@@ -189,11 +197,11 @@
 
 - (void)dismissPopoverAnimated:(BOOL)animated
 {
-    [self.dimmingView hideAnimated:NO];
+    [_dimmingView hideAnimated:NO];
     
     if (animated == NO)
     {
-        [self.popoverView removeFromSuperview];
+        [_popoverView removeFromSuperview];
         
         self.isVisible = NO;
     }
@@ -203,10 +211,10 @@
                               delay:0
                             options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseIn
                          animations:^{
-                             self.popoverView.alpha = 0.0f;
+                             _popoverView.alpha = 0.0f;
                          }
                          completion:^(BOOL finished) {
-                             [self.popoverView removeFromSuperview];
+                             [_popoverView removeFromSuperview];
                              self.isVisible = NO;
                          }];
     }
