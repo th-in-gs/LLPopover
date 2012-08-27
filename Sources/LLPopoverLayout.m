@@ -71,9 +71,9 @@ typedef struct LLScreenMatrix LLScreenMatrix;
 {
     if ( !(self = [super init]) ) return nil;
     
-    self.arrowSize = CGSizeMake(36.0f, 20.0f);
+    self.arrowSize = CGSizeMake(36.0f, 18.0f);
     self.cornerRadius = 8.0f;
-    self.contentInsets = UIEdgeInsetsMake(5.0f, 5.0f, 5.0f, 5.0f);
+    self.contentInsets = UIEdgeInsetsMake(8.0f, 8.0f, 8.0f, 8.0f);
     self.contentSize = CGSizeMake(100.0f, 80.0f);
     self.popoverFrameInsets = UIEdgeInsetsMake(5.0f, 5.0f, 5.0f, 5.0f);
     self.popoverMinSize = CGSizeMake(120.0f, 70.0f);
