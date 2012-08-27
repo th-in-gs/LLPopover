@@ -25,10 +25,16 @@
     LLPTPopoverContentViewController *contentController = [[LLPTPopoverContentViewController alloc] initWithNibName:nil bundle:nil];
     
     
-    if((_tapCount % 2) == 1) {
+    if([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPad ||
+       (_tapCount % 2) == 1) {
         LLPopover *popover = [[LLPopover alloc] initWithContentViewController:contentController
                                                                didShowHandler:nil
                                                                didHideHandler:nil];
+        
+        if((_tapCount % 4) == 0) {
+            popover.borderColor = [UIColor brownColor];
+        }
+            
         [popover presentPopoverFromRect:(CGRect){ [sender locationInView:self.view], { 1, 1 } }
                                  inView:self.view
                                animated:YES];

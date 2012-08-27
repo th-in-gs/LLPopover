@@ -253,7 +253,8 @@ typedef struct LLScreenMatrix LLScreenMatrix;
     if(CGSizeEqualToSize(maxSize, CGSizeZero)) {
         UIScreen *screen = window.screen;
         CGSize screenSize = screen.bounds.size;
-        maxSize = CGSizeMake(screenSize.width - 20.0f, screenSize.height - 60.0f);
+        maxSize = CGSizeMake(screenSize.width - self.popoverFrameInsets.left - self.popoverFrameInsets.right,
+                             screenSize.height - 60.0f);
     }
     
     CGRect convertedTargetRect = [window convertRect:self.targetRect fromView:self.targetView];

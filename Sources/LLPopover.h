@@ -36,6 +36,10 @@ typedef void(^LLPopoverDidHideHandler)();
  */
 @interface LLPopover : NSObject
 
+
++ (UIColor *)defaultBorderColor;
+
+
 /** The view controller that will be visible inside the popover */
 @property (nonatomic, strong, readonly) UIViewController *contentViewController;
 
@@ -47,6 +51,8 @@ typedef void(^LLPopoverDidHideHandler)();
 
 /** If the popover is presented this will return YES */
 @property (nonatomic, assign, readonly) BOOL isVisible;
+
+@property (nonatomic, strong) UIColor *borderColor;
 
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController

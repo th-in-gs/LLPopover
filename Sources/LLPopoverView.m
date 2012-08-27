@@ -90,29 +90,74 @@
 - (void)drawRect:(CGRect)rect
 {
     [self updateArrowOrigin];
-        
+    
+    CGContextRef cgContext = UIGraphicsGetCurrentContext();
+    
     UIBezierPath *popoverPath = [self popoverPath];
     [popoverPath setLineJoinStyle:kCGLineJoinRound];
 
+    
+    // The light single-point 'glow' around the popover:
     [[UIColor colorWithRed:1 green:1 blue:1 alpha:0.15] setStroke];
     
     [popoverPath setLineWidth:2.0f];
     [popoverPath stroke];
-
     
-    [[UIColor colorWithRed:0.04 green:0.09 blue:0.2 alpha:1.0] setFill];
+    
+    // Now, don't draw outside the path - this will clip all drawing below.
+    [popoverPath addClip];
+    
+
+    // The man popover border color.
+    [_popover.borderColor setFill];
     [popoverPath fill];
     
-    [popoverPath addClip];
+    
+    // The shine gradient that covers the arrow, if it's on the top, and
+    // the top portion of the popover border.
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    static const CGFloat colors[] =  { 1.0f, 1.0f, 1.0f, 0.8f,
+                                       1.0f, 1.0f, 1.0f, 0.0875f };
+    
+    CGGradientRef gradient = CGGradientCreateWithColorComponents(colorSpace, colors, NULL, 2);
+    
+    // We use a single, tall, gradient and position if over the arrow if
+    // the arrow is on the top, or off the top of the view so that only
+    // the bottom part is visible if it's not.
+    CGFloat gradientStart = self.popoverLayout.arrowDirection == LLPopoverArrowDirectionUp ? 0 : -self.popoverLayout.arrowSize.height;
+    CGContextDrawLinearGradient(cgContext, gradient, CGPointMake(self.bounds.size.width * 0.5f, gradientStart), CGPointMake(self.bounds.size.width * 0.5f, gradientStart + 41), 0);
+    CGColorSpaceRelease(colorSpace);
+    CGGradientRelease(gradient);
 
-    // top shine
-    UIBezierPath *shinePath = [self popoverShinePath];
     
-    [[UIColor colorWithWhite:1.0f alpha:0.10f] setFill];
-    [shinePath fill];
+    // The darker single-point outline.
+    [[UIColor colorWithRed:0.03 green:0.03 blue:0.03 alpha:1.0] setStroke];
     
-    // popover shadow
-    self.layer.shadowPath = [[UIBezierPath bezierPathWithRect:[self convertRect:_contentViewContainer.bounds fromView:_contentViewContainer]] CGPath];
+    // 2 points wide because the path is on a pixel boundry, so this causes
+    // it to cover integral pixels.  The outer pixel will be clipped off
+    // because we've already set a clip path, above, to the popover shape.
+    [popoverPath setLineWidth:2.0f];
+    [popoverPath stroke];
+
+    
+    // The single-point light highlight that surrounds the top of the top
+    // border.
+    CGContextSaveGState(cgContext);
+    CGContextTranslateCTM(cgContext, 0, 1);
+    CGFloat blendOutAt = self.popoverLayout.arrowDirection == LLPopoverArrowDirectionUp ? self.popoverLayout.arrowSize.height + 4.75f : 4.75f;
+    [[UIBezierPath bezierPathWithRect:CGRectMake(0, 0, self.bounds.size.width, blendOutAt)] addClip];
+    [[UIColor colorWithRed:1 green:1 blue:1 alpha:0.25] setStroke];
+    [popoverPath setLineWidth:2.0f];
+    [popoverPath stroke];
+    CGContextRestoreGState(cgContext);
+    
+    
+    // Shadow for the entire popover.
+    // System popovers have a square shadow despite the arrow sticking out
+    // from them, so we do the same (perhaps this is intentional to show that,
+    // though the main part is floating, the arrow is 'on' the thing it's
+    // popping out from?
+    self.layer.shadowPath = [[UIBezierPath bezierPathWithRect:[self convertRect:_contentViewContainerMask.bounds fromView:_contentViewContainerMask]] CGPath];
     self.layer.shadowOffset = CGSizeMake(0.0f, 8.0f);
     self.layer.shadowOpacity = 1.0f;
     self.layer.shadowRadius = 25.0f;
@@ -127,8 +172,8 @@
     CGPoint originalAnchorPoint = CGPointMake(CGRectGetMidX(self.popoverLayout.targetRect), 0.0f);
     CGPoint anchorPoint = [self convertPoint:originalAnchorPoint fromView:self.popoverLayout.targetView];
     
-    CGFloat minArrowPos = ceilf(self.popoverLayout.arrowSize.width / 2 + self.popoverLayout.cornerRadius);
-    CGFloat maxArrowPos = floorf(CGRectGetWidth(self.frame) - self.popoverLayout.arrowSize.width / 2 - self.popoverLayout.cornerRadius);
+    CGFloat minArrowPos = ceilf(self.popoverLayout.arrowSize.width * 0.5f + self.popoverLayout.cornerRadius);
+    CGFloat maxArrowPos = floorf(CGRectGetWidth(self.frame) - self.popoverLayout.arrowSize.width * 0.5f - self.popoverLayout.cornerRadius) - 1.0f;
     
     CGFloat midX = ceilf([LLUtils clampValue:anchorPoint.x min:minArrowPos max:maxArrowPos]);
     
@@ -319,16 +364,16 @@
     // This view will contain the content view, and above it, a view
     // containing the inner shadow.  It will mask out these layers
     // to fit in the popover.
-    _contentViewContainerMask = [[UIView alloc] initWithFrame:CGRectInset(containerViewFrame, -1, -1)];
+    _contentViewContainerMask = [[UIView alloc] initWithFrame:CGRectInset(containerViewFrame, 0.0f, 0.0f)];
     _contentViewContainerMask.clipsToBounds = YES;
-    _contentViewContainerMask.layer.cornerRadius = 6.0f;
+    _contentViewContainerMask.layer.cornerRadius = 5.0f;
     CGRect contentViewContainerMaskBounds = _contentViewContainerMask.bounds;
     
     
     // To cast the inner shadow, we create a larger view, with a thick border 
     // that will cast the shadow.  The border will be masked out by the mask 
     // view.
-    CGFloat shadowLayerHiddenBorderWidth = 5.0f;
+    CGFloat shadowLayerHiddenBorderWidth = 10.0f;
     
     UIView *shadowView = [[UIView alloc] initWithFrame:CGRectInset(contentViewContainerMaskBounds, -shadowLayerHiddenBorderWidth, -shadowLayerHiddenBorderWidth)];
     shadowView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -339,20 +384,20 @@
     
     // add the shadowLayerHiddenBorderWidth so that the radius at the inside
     // is the same.
-    shadowLayer.cornerRadius = _contentViewContainerMask.layer.cornerRadius + shadowLayerHiddenBorderWidth;
+    shadowLayer.cornerRadius = _contentViewContainerMask.layer.cornerRadius + shadowLayerHiddenBorderWidth - 2.0f;
     
-     // +1 to get the visible black line
-    shadowLayer.borderWidth = shadowLayerHiddenBorderWidth + 1.0f;
+    // +1 to get the visible black line
+    shadowLayer.borderWidth = shadowLayerHiddenBorderWidth - 2.5f;
     shadowLayer.borderColor = [[UIColor blackColor] CGColor];
 
     // And here's the shadow!
-    shadowLayer.shadowOffset = CGSizeMake(0, 2);
-    shadowLayer.shadowOpacity = 1.0;
-    shadowLayer.shadowRadius = 1.0;
-    shadowLayer.shadowColor = [[[UIColor blackColor] colorWithAlphaComponent:1.0f / 3.0f] CGColor];
+    shadowLayer.shadowOffset = CGSizeMake(0.0f, 3.0f);
+    shadowLayer.shadowOpacity = 0.75f;
+    shadowLayer.shadowRadius = 2.0f;
+    shadowLayer.shadowColor = [[UIColor blackColor] CGColor];
     
     // This view will contain the real popover content.
-    _contentViewContainer = [[UIView alloc] initWithFrame:CGRectInset(contentViewContainerMaskBounds, 1, 1)];
+    _contentViewContainer = [[UIView alloc] initWithFrame:contentViewContainerMaskBounds];
     _contentViewContainer.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
     // Add the content view container first, so that it's below the shadow.

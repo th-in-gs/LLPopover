@@ -49,6 +49,10 @@
 @synthesize contentViewController=_contentViewController;
 @synthesize isVisible=_isVisible;
 
++ (UIColor *)defaultBorderColor
+{
+    return [UIColor colorWithRed:0.04f green:0.09f blue:0.2f alpha:1.0f];
+}
 
 #pragma mark - Class lifecycle
 
@@ -63,6 +67,8 @@
 - (id)init
 {
     if ( !(self = [super init]) ) return nil;
+    
+    _borderColor = [[self class] defaultBorderColor];
     
     _dimmingView = [[LLDimmingView alloc] initWithFrame:[[UIScreen mainScreen] bounds]
                                            dimmingColor:nil];
