@@ -45,6 +45,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7DF42FA615EB93550012CA04 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; wrapsLines = 1; };
+		7DF42FA715EB93550012CA04 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = "<group>"; wrapsLines = 1; };
 		A362B609143859B300BD45EE /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = SOURCE_ROOT; };
 		A362B61014385A0100BD45EE /* LLPopover+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LLPopover+Private.h"; sourceTree = "<group>"; };
 		A362B61114385A0100BD45EE /* LLPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPopover.h; sourceTree = "<group>"; };
@@ -125,6 +127,8 @@
 		A3F9189914385900006D7F26 = {
 			isa = PBXGroup;
 			children = (
+				7DF42FA715EB93550012CA04 /* README */,
+				7DF42FA615EB93550012CA04 /* LICENSE */,
 				A3F918A914385900006D7F26 /* LLPopover */,
 				A3F918A614385900006D7F26 /* Frameworks */,
 				A3F918A514385900006D7F26 /* Products */,
