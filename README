@@ -1,8 +1,9 @@
-A UIPopover clone for the iPhone (and iPad).
+A UIPopover clone for the iPhone (and iPad). 
 
-Constructed using QuartzCore, no images: fast, small memory footprint, easy customization.
+Looks almost identical to the system popover.
+No images, small memory footprint, easy to use.
 
-This is heavily modified from Liberati Luca's original LLPopover.
+Heavily modified from Liberati Luca's original LLPopover.
 
 Copyright (c) 2011 Liberati Luca, http://www.liberatiluca.com
 Modifications copyright (c) 2012 Things Made Out Of Other Things Ltd, http://th.ingsmadeoutofotherthin.gs/
