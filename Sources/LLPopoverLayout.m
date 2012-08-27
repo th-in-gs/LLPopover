@@ -66,7 +66,6 @@
     self.contentInsets = UIEdgeInsetsMake(5.0f, 5.0f, 5.0f, 5.0f);
     self.contentSize = CGSizeMake(100.0f, 80.0f);
     self.popoverFrameInsets = UIEdgeInsetsMake(5.0f, 5.0f, 5.0f, 5.0f);
-    self.popoverMaxSize = CGSizeMake(300.0f, 420.0f);
     self.popoverMinSize = CGSizeMake(120.0f, 70.0f);
     self.targetOffset = 0.0f;
     self.targetRect = CGRectZero;
@@ -162,17 +161,25 @@
     CGRect frame = CGRectZero;
     
     UIWindow *window = self.targetView.window;
+    
+    CGSize maxSize = self.popoverMaxSize;
+    if(CGSizeEqualToSize(maxSize, CGSizeZero)) {
+        UIScreen *screen = window.screen;
+        CGSize screenSize = screen.bounds.size;
+        maxSize = CGSizeMake(screenSize.width - 20.0f, screenSize.height - 60.0f);
+    }
+    
     CGRect convertedTargetRect = [window convertRect:self.targetRect fromView:self.targetView];
     
     // calculate the frame
     frame.size.width = self.contentSize.width + self.contentInsets.left + self.contentInsets.right;
-    frame.size.width = [LLUtils clampValue:frame.size.width min:self.popoverMinSize.width max:self.popoverMaxSize.width];
+    frame.size.width = [LLUtils clampValue:frame.size.width min:self.popoverMinSize.width max:maxSize.width];
     
     frame.size.height = self.contentSize.height + self.contentInsets.top + self.contentInsets.bottom + self.arrowSize.height;
-    frame.size.height = [LLUtils clampValue:frame.size.height min:self.popoverMinSize.height max:self.popoverMaxSize.height];
+    frame.size.height = [LLUtils clampValue:frame.size.height min:self.popoverMinSize.height max:maxSize.height];
     
     frame.origin.y = 0.0f;
-    frame.origin.x = CGRectGetMidX(convertedTargetRect) - (frame.size.width / 2);
+    frame.origin.x = floorf(CGRectGetMidX(convertedTargetRect) - frame.size.width * 0.5f);
     
     switch (self.arrowDirection)
     {
@@ -204,9 +211,8 @@
         frame.origin.y += diff;
         frame.size.height -= diff;
     } else if (CGRectGetMaxY(frame) > CGRectGetMaxY(windowBounds) - self.popoverFrameInsets.bottom) {
-        CGFloat diff = self.popoverFrameInsets.bottom - CGRectGetMinY(frame);
-        frame.origin.y -= diff;
-        frame.size.height -= diff;
+        CGFloat diff =  (CGRectGetMaxY(windowBounds) - self.popoverFrameInsets.bottom) - CGRectGetMaxY(frame);
+        frame.size.height += diff;
     }
         
     _popoverFrame = frame;

@@ -7,23 +7,44 @@
 //
 
 #import "LLPTViewController.h"
+#import "LLPTPopoverContentViewController.h"
 
-@interface LLPTViewController ()
+#import <LLPopover/LLPopover.h>
+
+@interface LLPTViewController () <UIGestureRecognizerDelegate>
 
 @end
 
-@implementation LLPTViewController
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+@implementation LLPTViewController {
+    id _popover;
+    NSUInteger _tapCount;
 }
 
-- (void)didReceiveMemoryWarning
+- (IBAction)receivedTap:(UITapGestureRecognizer *)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    LLPTPopoverContentViewController *contentController = [[LLPTPopoverContentViewController alloc] initWithNibName:nil bundle:nil];
+    
+    
+    if((_tapCount % 2) == 1) {
+        LLPopover *popover = [[LLPopover alloc] initWithContentViewController:contentController
+                                                               didShowHandler:nil
+                                                               didHideHandler:nil];
+        [popover presentPopoverFromRect:(CGRect){ [sender locationInView:self.view], { 1, 1 } }
+                                 inView:self.view
+                               animated:YES];
+        
+        _popover = popover;
+    } else {
+        UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:contentController];
+        [popover presentPopoverFromRect:(CGRect){ [sender locationInView:self.view], { 1, 1 } }
+                                 inView:self.view
+               permittedArrowDirections:UIPopoverArrowDirectionUp | UIPopoverArrowDirectionDown
+                               animated:YES];
+        
+        _popover = popover;
+    }
+    
+    ++_tapCount;
 }
 
 @end

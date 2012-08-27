@@ -26,7 +26,8 @@
 
 #import "LLPopover.h"
 #import "LLPopover+Private.h"
-
+#import "LLPopoverView.h"
+#import "LLDimmingView.h"
 
 @implementation LLPopover
 
@@ -37,7 +38,7 @@
 @synthesize popoverLayout=_popoverLayout;
 @synthesize popoverView=_popoverView;
 @synthesize dimmingView=_dimmingView;
-@synthesize contentVC=_contentVC;
+@synthesize contentViewController=_contentViewController;
 @synthesize isVisible=_isVisible;
 
 
@@ -76,17 +77,17 @@
 {
     self = [self init];
     
-    self.contentVC = contentViewController;
+    self.contentViewController = contentViewController;
     _popoverLayout = [[LLPopoverLayout alloc] init];
-    self.popoverLayout.contentSize = self.contentVC.contentSizeForViewInPopover;
+    self.popoverLayout.contentSize = self.contentViewController.contentSizeForViewInPopover;
     
     CGRect contentFrame = {
         0.0f,
         0.0f,
-        _contentVC.contentSizeForViewInPopover.width,
-        _contentVC.contentSizeForViewInPopover.height
+        contentViewController.contentSizeForViewInPopover.width,
+        contentViewController.contentSizeForViewInPopover.height
     };
-    self.contentVC.view.frame = contentFrame;
+    self.contentViewController.view.frame = contentFrame;
     
     self.didShowHandler = didShowHandler;
     self.didHideHandler = didHideHandler;
@@ -155,8 +156,8 @@
         [self.popoverView.contentViewContainer.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     }
     
-    _contentVC.view.frame = self.popoverView.contentViewContainer.bounds;
-    [self.popoverView.contentViewContainer addSubview:_contentVC.view];
+    self.contentViewController.view.frame = self.popoverView.contentViewContainer.bounds;
+    [self.popoverView.contentViewContainer addSubview:self.contentViewController.view];
     
     
     UIWindow *window = [targetView window];

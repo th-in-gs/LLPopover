@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		7D67AF9715EB9C790015BFB4 /* LLPTPopoverContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D67AF9515EB9C790015BFB4 /* LLPTPopoverContentViewController.m */; };
+		7D67AF9815EB9C790015BFB4 /* LLPTPopoverContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D67AF9615EB9C790015BFB4 /* LLPTPopoverContentViewController.xib */; };
 		7DCDB39415EB96E30050E9D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A362B62A14385A6200BD45EE /* UIKit.framework */; };
 		7DCDB39515EB96E30050E9D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F918A714385900006D7F26 /* Foundation.framework */; };
 		7DCDB39715EB96E30050E9D5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DCDB39615EB96E30050E9D5 /* CoreGraphics.framework */; };
@@ -40,7 +42,7 @@
 		A362B62114385A0100BD45EE /* LLPopoverLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = A362B61614385A0100BD45EE /* LLPopoverLayout.m */; };
 		A362B62214385A0100BD45EE /* LLPopoverView+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = A362B61714385A0100BD45EE /* LLPopoverView+Private.h */; };
 		A362B62314385A0100BD45EE /* LLPopoverView+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = A362B61814385A0100BD45EE /* LLPopoverView+Private.m */; };
-		A362B62414385A0100BD45EE /* LLPopoverView.h in Headers */ = {isa = PBXBuildFile; fileRef = A362B61914385A0100BD45EE /* LLPopoverView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A362B62414385A0100BD45EE /* LLPopoverView.h in Headers */ = {isa = PBXBuildFile; fileRef = A362B61914385A0100BD45EE /* LLPopoverView.h */; settings = {ATTRIBUTES = (); }; };
 		A362B62514385A0100BD45EE /* LLPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = A362B61A14385A0100BD45EE /* LLPopoverView.m */; };
 		A362B62B14385A6200BD45EE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A362B62A14385A6200BD45EE /* UIKit.framework */; };
 		A362B62E14385ABA00BD45EE /* LLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A362B62C14385ABA00BD45EE /* LLUtils.m */; };
@@ -64,6 +66,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7D67AF9415EB9C790015BFB4 /* LLPTPopoverContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPTPopoverContentViewController.h; sourceTree = "<group>"; };
+		7D67AF9515EB9C790015BFB4 /* LLPTPopoverContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLPTPopoverContentViewController.m; sourceTree = "<group>"; };
+		7D67AF9615EB9C790015BFB4 /* LLPTPopoverContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LLPTPopoverContentViewController.xib; sourceTree = "<group>"; };
 		7DCDB39215EB96E30050E9D5 /* LLPopoverTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LLPopoverTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DCDB39615EB96E30050E9D5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		7DCDB39A15EB96E30050E9D5 /* LLPopoverTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LLPopoverTest-Info.plist"; sourceTree = "<group>"; };
@@ -134,6 +139,9 @@
 				7DCDB3A415EB96E30050E9D5 /* LLPTViewController.h */,
 				7DCDB3A515EB96E30050E9D5 /* LLPTViewController.m */,
 				7DCDB3AA15EB96E30050E9D5 /* LLPTViewController.xib */,
+				7D67AF9415EB9C790015BFB4 /* LLPTPopoverContentViewController.h */,
+				7D67AF9515EB9C790015BFB4 /* LLPTPopoverContentViewController.m */,
+				7D67AF9615EB9C790015BFB4 /* LLPTPopoverContentViewController.xib */,
 				7DCDB39915EB96E30050E9D5 /* Supporting Files */,
 			);
 			path = LLPopoverTest;
@@ -332,6 +340,7 @@
 			files = (
 				7DCDB39D15EB96E30050E9D5 /* InfoPlist.strings in Resources */,
 				7DCDB3AC15EB96E30050E9D5 /* LLPTViewController.xib in Resources */,
+				7D67AF9815EB9C790015BFB4 /* LLPTPopoverContentViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +370,7 @@
 				7DCDB39F15EB96E30050E9D5 /* main.m in Sources */,
 				7DCDB3A315EB96E30050E9D5 /* LLPTAppDelegate.m in Sources */,
 				7DCDB3A615EB96E30050E9D5 /* LLPTViewController.m in Sources */,
+				7D67AF9715EB9C790015BFB4 /* LLPTPopoverContentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +435,7 @@
 					"\"$(OBJROOT)/UninstalledProducts/include\"",
 				);
 				INFOPLIST_FILE = "LLPopoverTest/LLPopoverTest-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -448,6 +459,7 @@
 				);
 				INFOPLIST_FILE = "LLPopoverTest/LLPopoverTest-Info.plist";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
