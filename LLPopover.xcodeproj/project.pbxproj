@@ -42,8 +42,6 @@
 		A362B62B14385A6200BD45EE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A362B62A14385A6200BD45EE /* UIKit.framework */; };
 		A362B62E14385ABA00BD45EE /* LLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A362B62C14385ABA00BD45EE /* LLUtils.m */; };
 		A362B62F14385ABA00BD45EE /* LLUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = A362B62D14385ABA00BD45EE /* LLUtils.h */; };
-		A362B63214385B0300BD45EE /* LLStatusBarStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = A362B63014385B0300BD45EE /* LLStatusBarStatus.m */; };
-		A362B63314385B0300BD45EE /* LLStatusBarStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = A362B63114385B0300BD45EE /* LLStatusBarStatus.h */; };
 		A362B63514385B1500BD45EE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A362B63414385B1400BD45EE /* QuartzCore.framework */; };
 		A3DA5DF71439BE6900CA2776 /* LLDimmingView.h in Headers */ = {isa = PBXBuildFile; fileRef = A3DA5DF41439BE6900CA2776 /* LLDimmingView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A3DA5DF81439BE6900CA2776 /* LLDimmingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DA5DF51439BE6900CA2776 /* LLDimmingView.m */; };
@@ -87,8 +85,6 @@
 		A362B62A14385A6200BD45EE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A362B62C14385ABA00BD45EE /* LLUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLUtils.m; sourceTree = "<group>"; };
 		A362B62D14385ABA00BD45EE /* LLUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLUtils.h; sourceTree = "<group>"; };
-		A362B63014385B0300BD45EE /* LLStatusBarStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLStatusBarStatus.m; sourceTree = "<group>"; };
-		A362B63114385B0300BD45EE /* LLStatusBarStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLStatusBarStatus.h; sourceTree = "<group>"; };
 		A362B63414385B1400BD45EE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A3DA5DF41439BE6900CA2776 /* LLDimmingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLDimmingView.h; sourceTree = "<group>"; };
 		A3DA5DF51439BE6900CA2776 /* LLDimmingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLDimmingView.m; sourceTree = "<group>"; };
@@ -153,8 +149,6 @@
 			children = (
 				A362B62D14385ABA00BD45EE /* LLUtils.h */,
 				A362B62C14385ABA00BD45EE /* LLUtils.m */,
-				A362B63114385B0300BD45EE /* LLStatusBarStatus.h */,
-				A362B63014385B0300BD45EE /* LLStatusBarStatus.m */,
 				A362B61114385A0100BD45EE /* LLPopover.h */,
 				A362B61214385A0100BD45EE /* LLPopover.m */,
 				A362B61514385A0100BD45EE /* LLPopoverLayout.h */,
@@ -244,7 +238,6 @@
 				A362B62014385A0100BD45EE /* LLPopoverLayout.h in Headers */,
 				A362B62414385A0100BD45EE /* LLPopoverView.h in Headers */,
 				A362B62F14385ABA00BD45EE /* LLUtils.h in Headers */,
-				A362B63314385B0300BD45EE /* LLStatusBarStatus.h in Headers */,
 				A3DA5DF71439BE6900CA2776 /* LLDimmingView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,7 +357,6 @@
 				A362B62114385A0100BD45EE /* LLPopoverLayout.m in Sources */,
 				A362B62514385A0100BD45EE /* LLPopoverView.m in Sources */,
 				A362B62E14385ABA00BD45EE /* LLUtils.m in Sources */,
-				A362B63214385B0300BD45EE /* LLStatusBarStatus.m in Sources */,
 				A3DA5DF81439BE6900CA2776 /* LLDimmingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

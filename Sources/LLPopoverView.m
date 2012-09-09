@@ -30,12 +30,10 @@
 #import "LLUtils.h"
 #import "LLPopover.h"
 #import "LLPopoverLayout.h"
-#import "LLStatusBarStatus.h"
 
 
 @implementation LLPopoverView {
     CGPoint _arrowOrigin;
-    LLStatusBarStatus *_statusBarStatus;
     UIView *_contentViewContainerMask;
 }
 
@@ -59,27 +57,6 @@
     
     self.backgroundColor = [UIColor clearColor];
     self.opaque = NO;
-    
-    
-    _statusBarStatus = [[LLStatusBarStatus alloc] initWithStateHandler:^(LLStatusBarState state) {
-        
-        if (state == LLStatusBarStateNormal)
-        {
-            CGRect newFrame = self.frame;
-            newFrame.origin.y -= 40;
-            newFrame.origin.y += 20;
-            
-            [self updateFrameWithFrame:newFrame animated:YES];
-        }
-        else if (state == LLStatusBarStateExpanded)
-        {
-            CGRect newFrame = self.frame;
-            newFrame.origin.y -= 20;
-            newFrame.origin.y += 40;
-            
-            [self updateFrameWithFrame:newFrame animated:YES];
-        }
-    }];
     
     _popover = popover;
     _popoverLayout = popoverLayout;
