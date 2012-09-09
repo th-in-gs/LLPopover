@@ -265,13 +265,16 @@ typedef struct LLScreenMatrix LLScreenMatrix;
     
     CGAffineTransform rotationTransform = [LLUtils rotationTransformAroundOriginForWindow:window];
 
-    CGRect windowBounds = window.bounds;
-    windowBounds = CGRectApplyAffineTransform(windowBounds, rotationTransform);
-
+    // Use the applicationframe so that we can avoid the status bar.
+    CGRect visibleWindowBounds = [window convertRect:window.screen.applicationFrame fromView:nil];
+    
+    // Our coordinates should be in a space rotated to match the interface orientation.
+    visibleWindowBounds = CGRectApplyAffineTransform(visibleWindowBounds, rotationTransform);
+    
     CGSize maxSize = self.popoverMaxSize;
     if(CGSizeEqualToSize(maxSize, CGSizeZero)) {
-        maxSize = CGSizeMake(windowBounds.size.width - self.popoverFrameInsets.left - self.popoverFrameInsets.right,
-                             windowBounds.size.height - 60.0f);
+        maxSize = CGSizeMake(visibleWindowBounds.size.width - self.popoverFrameInsets.left - self.popoverFrameInsets.right,
+                             visibleWindowBounds.size.height - 60.0f);
     }
     
     CGRect convertedTargetRect = [window convertRect:self.targetRect fromView:self.targetView];
@@ -303,18 +306,18 @@ typedef struct LLScreenMatrix LLScreenMatrix;
     }
     
     // move the frame based on targetRect and the window bounds
-    if (CGRectGetMinX(frame) < CGRectGetMinX(windowBounds) + self.popoverFrameInsets.left) {
-        frame.origin.x = CGRectGetMinX(windowBounds) + self.popoverFrameInsets.left;
-    } else if (CGRectGetMaxX(frame) > CGRectGetMaxX(windowBounds) - self.popoverFrameInsets.right) {
-        frame.origin.x = CGRectGetMaxX(windowBounds) - CGRectGetWidth(frame) - self.popoverFrameInsets.right;
+    if (CGRectGetMinX(frame) < CGRectGetMinX(visibleWindowBounds) + self.popoverFrameInsets.left) {
+        frame.origin.x = CGRectGetMinX(visibleWindowBounds) + self.popoverFrameInsets.left;
+    } else if (CGRectGetMaxX(frame) > CGRectGetMaxX(visibleWindowBounds) - self.popoverFrameInsets.right) {
+        frame.origin.x = CGRectGetMaxX(visibleWindowBounds) - CGRectGetWidth(frame) - self.popoverFrameInsets.right;
     }
     
-    if (CGRectGetMinY(frame) < CGRectGetMinY(windowBounds) + self.popoverFrameInsets.top) {
-        CGFloat diff = CGRectGetMinY(windowBounds) + self.popoverFrameInsets.top - CGRectGetMinY(frame);
+    if (CGRectGetMinY(frame) < CGRectGetMinY(visibleWindowBounds) + self.popoverFrameInsets.top) {
+        CGFloat diff = CGRectGetMinY(visibleWindowBounds) + self.popoverFrameInsets.top - CGRectGetMinY(frame);
         frame.origin.y += diff;
         frame.size.height -= diff;
-    } else if (CGRectGetMaxY(frame) > CGRectGetMaxY(windowBounds) - self.popoverFrameInsets.bottom) {
-        CGFloat diff =  (CGRectGetMaxY(windowBounds) - self.popoverFrameInsets.bottom) - CGRectGetMaxY(frame);
+    } else if (CGRectGetMaxY(frame) > CGRectGetMaxY(visibleWindowBounds) - self.popoverFrameInsets.bottom) {
+        CGFloat diff =  (CGRectGetMaxY(visibleWindowBounds) - self.popoverFrameInsets.bottom) - CGRectGetMaxY(frame);
         frame.size.height += diff;
     }
         
