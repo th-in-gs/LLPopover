@@ -41,6 +41,8 @@ struct LLScreenMatrix
 };
 typedef struct LLScreenMatrix LLScreenMatrix;
 
+static const char * LLPopoverLayoutSelfTargetRectObservationContext = "LLPopoverLayoutSelfTargetRectObservationContext";
+
 @interface LLPopoverLayout ()
 
 - (void)updateArrowDirection;
@@ -70,7 +72,9 @@ typedef struct LLScreenMatrix LLScreenMatrix;
 
 - (void)dealloc
 {
-    [self removeObserver:self forKeyPath:@"targetRect"];
+    [self removeObserver:self
+              forKeyPath:@"targetRect"
+                 context:(void *)LLPopoverLayoutSelfTargetRectObservationContext];
     _targetView = nil;
 }
 
@@ -87,7 +91,9 @@ typedef struct LLScreenMatrix LLScreenMatrix;
     self.targetOffset = 0.0f;
     self.targetRect = CGRectZero;
     
-    [self addObserver:self forKeyPath:@"targetRect" options:NSKeyValueObservingOptionNew context:NULL];
+    [self addObserver:self forKeyPath:@"targetRect"
+              options:NSKeyValueObservingOptionNew
+              context:(void *)LLPopoverLayoutSelfTargetRectObservationContext];
     
     return self;
 }
@@ -110,7 +116,7 @@ typedef struct LLScreenMatrix LLScreenMatrix;
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([keyPath isEqualToString:@"targetRect"])
+    if (context == LLPopoverLayoutSelfTargetRectObservationContext)
     {
         [self updateArrowDirection];
         [self updatePopoverFrame];

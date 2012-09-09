@@ -37,6 +37,8 @@
 @end
 
 
+const char * LLPopoverSelfIsVisibleObservationContext = "LLPopoverSelfIsVisibleObservationContext";
+
 @implementation LLPopover {
     LLPopoverDidShowHandler _didShowHandler;
     LLPopoverDidHideHandler _didHideHandler;
@@ -59,7 +61,9 @@
 
 - (void)dealloc
 {
-    [self removeObserver:self forKeyPath:@"isVisible"];
+    [self removeObserver:self
+              forKeyPath:@"isVisible"
+                 context:(void *)LLPopoverSelfIsVisibleObservationContext];
     
     _didShowHandler = nil;
     _didHideHandler = nil;
@@ -81,7 +85,10 @@
     
     _isVisible = NO;
     
-    [self addObserver:self forKeyPath:@"isVisible" options:NSKeyValueObservingOptionNew context:NULL];
+    [self addObserver:self
+           forKeyPath:@"isVisible"
+              options:NSKeyValueObservingOptionNew
+              context:(void *)LLPopoverSelfIsVisibleObservationContext];
     
     return self;
 }
@@ -123,7 +130,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([keyPath isEqualToString:@"isVisible"])
+    if (context == LLPopoverSelfIsVisibleObservationContext)
     {
         if (self.isVisible)
         {
