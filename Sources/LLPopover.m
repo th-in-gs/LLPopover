@@ -26,6 +26,7 @@
 
 #import "LLPopover.h"
 #import "LLPopoverView.h"
+#import "LLUtils.h"
 #import "LLDimmingView.h"
 
 @interface LLPopover ()
@@ -141,7 +142,6 @@
     }
 }
 
-
 #pragma mark - Public methods
 
 - (void)presentPopoverFromBarButtonItem:(UIBarButtonItem *)barButtonItem
@@ -175,7 +175,15 @@
     
     
     UIWindow *window = [targetView window];
+    CGRect windowBounds = window.bounds;
     
+    _dimmingView.transform = CGAffineTransformIdentity;
+
+    CGAffineTransform rotationTransform = [LLUtils rotationTransformForWindow:window];
+    CGRect frame = CGRectApplyAffineTransform(windowBounds, rotationTransform);
+    [_dimmingView setFrame:frame];
+    _dimmingView.center = CGPointMake(CGRectGetMidX(windowBounds), CGRectGetMidY(windowBounds));
+    _dimmingView.transform = CGAffineTransformInvert(rotationTransform);
     [window addSubview:_dimmingView];
     
     [_dimmingView showAnimated:NO];

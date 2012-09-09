@@ -41,6 +41,13 @@ struct LLScreenMatrix
 };
 typedef struct LLScreenMatrix LLScreenMatrix;
 
+@interface LLPopoverLayout ()
+
+- (void)updateArrowDirection;
+- (void)updatePopoverFrame;
+
+@end
+
 @implementation LLPopoverLayout
 
 // public
@@ -140,11 +147,13 @@ typedef struct LLScreenMatrix LLScreenMatrix;
 {
     UIWindow *window = self.targetView.window;
     
+    CGRect windowBounds = CGRectApplyAffineTransform(window.bounds, [LLUtils rotationTransformAroundOriginForWindow:window]);
+    
     LLScreenMatrix screenMatrix;
     
     // segment of a 3x3 matrix
-    CGFloat segmentWidth = ceilf((window.bounds.size.width / 3) * 100) / 100;
-    CGFloat segmentHeight = ceilf((window.bounds.size.height / 3) * 100) / 100;
+    CGFloat segmentWidth = ceilf((windowBounds.size.width / 3) * 100) / 100;
+    CGFloat segmentHeight = ceilf((windowBounds.size.height / 3) * 100) / 100;
     
     CGSize segmentSize = CGSizeMake(segmentWidth, segmentHeight);
     
@@ -217,7 +226,12 @@ typedef struct LLScreenMatrix LLScreenMatrix;
 {
     LLPopoverArrowDirection arrowDirection = LLPopoverArrowDirectionUnknown;
     
-    CGRect convertedTargetRect = [self.targetView convertRect:self.targetRect toView:nil];
+    UIWindow *window = self.targetView.window;
+    
+    CGAffineTransform rotationTransform = [LLUtils rotationTransformAroundOriginForWindow:window];
+    
+    CGRect convertedTargetRect = [window convertRect:self.targetRect fromView:self.targetView];
+    convertedTargetRect = CGRectApplyAffineTransform(convertedTargetRect, rotationTransform);
     
     LLScreenMatrix screenMatrix = [self calculateScreenMatrix];
     
@@ -249,16 +263,20 @@ typedef struct LLScreenMatrix LLScreenMatrix;
     
     UIWindow *window = self.targetView.window;
     
+    CGAffineTransform rotationTransform = [LLUtils rotationTransformAroundOriginForWindow:window];
+
+    CGRect windowBounds = window.bounds;
+    windowBounds = CGRectApplyAffineTransform(windowBounds, rotationTransform);
+
     CGSize maxSize = self.popoverMaxSize;
     if(CGSizeEqualToSize(maxSize, CGSizeZero)) {
-        UIScreen *screen = window.screen;
-        CGSize screenSize = screen.bounds.size;
-        maxSize = CGSizeMake(screenSize.width - self.popoverFrameInsets.left - self.popoverFrameInsets.right,
-                             screenSize.height - 60.0f);
+        maxSize = CGSizeMake(windowBounds.size.width - self.popoverFrameInsets.left - self.popoverFrameInsets.right,
+                             windowBounds.size.height - 60.0f);
     }
     
     CGRect convertedTargetRect = [window convertRect:self.targetRect fromView:self.targetView];
-    
+    convertedTargetRect = CGRectApplyAffineTransform(convertedTargetRect, rotationTransform);
+
     // calculate the frame
     frame.size.width = self.contentSize.width + self.contentInsets.left + self.contentInsets.right;
     frame.size.width = [LLUtils clampValue:frame.size.width min:self.popoverMinSize.width max:maxSize.width];
@@ -285,9 +303,6 @@ typedef struct LLScreenMatrix LLScreenMatrix;
     }
     
     // move the frame based on targetRect and the window bounds
-    CGRect applicationFrame = [[window screen] applicationFrame];
-    CGRect windowBounds = CGRectIntersection(applicationFrame, window.bounds);
-    
     if (CGRectGetMinX(frame) < CGRectGetMinX(windowBounds) + self.popoverFrameInsets.left) {
         frame.origin.x = CGRectGetMinX(windowBounds) + self.popoverFrameInsets.left;
     } else if (CGRectGetMaxX(frame) > CGRectGetMaxX(windowBounds) - self.popoverFrameInsets.right) {

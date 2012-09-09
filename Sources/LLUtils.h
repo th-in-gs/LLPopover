@@ -16,5 +16,7 @@
 + (CGFloat)clampValue:(CGFloat)value min:(CGFloat)min max:(CGFloat)max;
 + (BOOL)rect:(CGRect)aRect canBeCenteredInRect:(CGRect)targetRect;
 + (BOOL)view:(UIView *)aView canBeCenteredInView:(UIView *)targetView;
++ (CGAffineTransform)rotationTransformForWindow:(UIWindow *)window;
++ (CGAffineTransform)rotationTransformAroundOriginForWindow:(UIWindow *)window;
 
 @end

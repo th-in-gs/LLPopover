@@ -74,7 +74,4 @@ typedef enum
 /** the target that contains targetRect */
 @property (nonatomic, weak) UIView *targetView;
 
-- (void)updateArrowDirection;
-- (void)updatePopoverFrame;
-
 @end
