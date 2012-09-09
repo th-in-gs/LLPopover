@@ -187,22 +187,20 @@
         
         !animated)
     {
-        [window addSubview:_popoverView];
-        
-        self.isVisible = YES;
+        [_dimmingView addSubview:_popoverView];
     }
     else
     {
-        [UIView transitionWithView:window
+        [UIView transitionWithView:_dimmingView.superview
                           duration:0.0f
                            options:UIViewAnimationOptionTransitionCrossDissolve
                         animations:^{
-                            [window addSubview:_popoverView];
+                            [_dimmingView addSubview:_popoverView];
                         }
                         completion:^(BOOL finished) {
-                            self.isVisible = YES;
                         }];
     }
+    self.isVisible = YES;
 }
 
 - (void)dismissPopoverAnimated:(BOOL)animated
@@ -212,16 +210,18 @@
     if (!animated)
     {
         [_popoverView removeFromSuperview];
+        [_dimmingView removeFromSuperview];
         
         self.isVisible = NO;
     }
     else
     {
-        [UIView transitionWithView:_popoverView.superview
+        [UIView transitionWithView:_dimmingView.superview
                           duration:1.0f / 3.0f
                            options:UIViewAnimationOptionTransitionCrossDissolve
                         animations:^{
                             [_popoverView removeFromSuperview];
+                            [_dimmingView removeFromSuperview];
                         }
                         completion:^(BOOL finished) {
                             self.isVisible = NO;
