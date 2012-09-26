@@ -24,12 +24,12 @@
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#import "LLPopover.h"
+#import "LLPopoverController.h"
 #import "LLPopoverView.h"
 #import "LLUtils.h"
 #import "LLDimmingView.h"
 
-@interface LLPopover ()
+@interface LLPopoverController ()
 
 @property (nonatomic, strong) UIViewController *contentViewController;
 @property (nonatomic, assign, readwrite) BOOL isVisible;
@@ -39,7 +39,7 @@
 
 const char * LLPopoverSelfIsVisibleObservationContext = "LLPopoverSelfIsVisibleObservationContext";
 
-@implementation LLPopover {
+@implementation LLPopoverController {
     LLPopoverDidShowHandler _didShowHandler;
     LLPopoverDidHideHandler _didHideHandler;
     
@@ -78,7 +78,7 @@ const char * LLPopoverSelfIsVisibleObservationContext = "LLPopoverSelfIsVisibleO
     _dimmingView = [[LLDimmingView alloc] initWithFrame:[[UIScreen mainScreen] bounds]
                                            dimmingColor:nil];
     
-    __weak LLPopover *wSelf = self;
+    __weak LLPopoverController *wSelf = self;
     [_dimmingView setTapBlock:^{
         [wSelf dismissPopoverAnimated:YES];
     }];

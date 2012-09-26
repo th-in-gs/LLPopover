@@ -33,8 +33,8 @@
 		7DCDB3AC15EB96E30050E9D5 /* LLPTViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DCDB3AA15EB96E30050E9D5 /* LLPTViewController.xib */; };
 		7DCDB3B315EB971F0050E9D5 /* libLLPopover.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F918A414385900006D7F26 /* libLLPopover.a */; };
 		A362B60A143859B300BD45EE /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = A362B609143859B300BD45EE /* Prefix.pch */; };
-		A362B61C14385A0100BD45EE /* LLPopover.h in Headers */ = {isa = PBXBuildFile; fileRef = A362B61114385A0100BD45EE /* LLPopover.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A362B61D14385A0100BD45EE /* LLPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = A362B61214385A0100BD45EE /* LLPopover.m */; };
+		A362B61C14385A0100BD45EE /* LLPopoverController.h in Headers */ = {isa = PBXBuildFile; fileRef = A362B61114385A0100BD45EE /* LLPopoverController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A362B61D14385A0100BD45EE /* LLPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = A362B61214385A0100BD45EE /* LLPopoverController.m */; };
 		A362B62014385A0100BD45EE /* LLPopoverLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = A362B61514385A0100BD45EE /* LLPopoverLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A362B62114385A0100BD45EE /* LLPopoverLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = A362B61614385A0100BD45EE /* LLPopoverLayout.m */; };
 		A362B62414385A0100BD45EE /* LLPopoverView.h in Headers */ = {isa = PBXBuildFile; fileRef = A362B61914385A0100BD45EE /* LLPopoverView.h */; settings = {ATTRIBUTES = (); }; };
@@ -76,8 +76,8 @@
 		7DF42FA615EB93550012CA04 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; wrapsLines = 1; };
 		7DF42FA715EB93550012CA04 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = "<group>"; wrapsLines = 1; };
 		A362B609143859B300BD45EE /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = SOURCE_ROOT; };
-		A362B61114385A0100BD45EE /* LLPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPopover.h; sourceTree = "<group>"; };
-		A362B61214385A0100BD45EE /* LLPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLPopover.m; sourceTree = "<group>"; };
+		A362B61114385A0100BD45EE /* LLPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPopoverController.h; sourceTree = "<group>"; };
+		A362B61214385A0100BD45EE /* LLPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLPopoverController.m; sourceTree = "<group>"; };
 		A362B61514385A0100BD45EE /* LLPopoverLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPopoverLayout.h; sourceTree = "<group>"; };
 		A362B61614385A0100BD45EE /* LLPopoverLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLPopoverLayout.m; sourceTree = "<group>"; };
 		A362B61914385A0100BD45EE /* LLPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPopoverView.h; sourceTree = "<group>"; };
@@ -149,8 +149,8 @@
 			children = (
 				A362B62D14385ABA00BD45EE /* LLUtils.h */,
 				A362B62C14385ABA00BD45EE /* LLUtils.m */,
-				A362B61114385A0100BD45EE /* LLPopover.h */,
-				A362B61214385A0100BD45EE /* LLPopover.m */,
+				A362B61114385A0100BD45EE /* LLPopoverController.h */,
+				A362B61214385A0100BD45EE /* LLPopoverController.m */,
 				A362B61514385A0100BD45EE /* LLPopoverLayout.h */,
 				A362B61614385A0100BD45EE /* LLPopoverLayout.m */,
 				A362B61914385A0100BD45EE /* LLPopoverView.h */,
@@ -234,7 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A362B60A143859B300BD45EE /* Prefix.pch in Headers */,
-				A362B61C14385A0100BD45EE /* LLPopover.h in Headers */,
+				A362B61C14385A0100BD45EE /* LLPopoverController.h in Headers */,
 				A362B62014385A0100BD45EE /* LLPopoverLayout.h in Headers */,
 				A362B62414385A0100BD45EE /* LLPopoverView.h in Headers */,
 				A362B62F14385ABA00BD45EE /* LLUtils.h in Headers */,
@@ -353,7 +353,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A362B61D14385A0100BD45EE /* LLPopover.m in Sources */,
+				A362B61D14385A0100BD45EE /* LLPopoverController.m in Sources */,
 				A362B62114385A0100BD45EE /* LLPopoverLayout.m in Sources */,
 				A362B62514385A0100BD45EE /* LLPopoverView.m in Sources */,
 				A362B62E14385ABA00BD45EE /* LLUtils.m in Sources */,

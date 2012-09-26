@@ -24,16 +24,16 @@
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-@class LLPopover;
+@class LLPopoverController;
 @class LLPopoverLayout;
 
 
 @interface LLPopoverView : UIView
 
-@property (nonatomic, weak, readonly) LLPopover *popover;
+@property (nonatomic, weak, readonly) LLPopoverController *popover;
 @property (nonatomic, weak, readonly) LLPopoverLayout *popoverLayout;
 @property (nonatomic, strong, readonly) UIView *contentViewContainer;
 
-- (id)initWithPopover:(LLPopover *)popover popoverLayout:(LLPopoverLayout *)popoverLayout;
+- (id)initWithPopover:(LLPopoverController *)popover popoverLayout:(LLPopoverLayout *)popoverLayout;
 
 @end

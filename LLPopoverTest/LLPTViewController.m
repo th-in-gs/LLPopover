@@ -9,7 +9,7 @@
 #import "LLPTViewController.h"
 #import "LLPTPopoverContentViewController.h"
 
-#import <LLPopover/LLPopover.h>
+#import <LLPopover/LLPopoverController.h>
 
 @interface LLPTViewController () <UIGestureRecognizerDelegate>
 
@@ -27,7 +27,7 @@
     
     if([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPad ||
        (_tapCount % 2) == 1) {
-        LLPopover *popover = [[LLPopover alloc] initWithContentViewController:contentController
+        LLPopoverController *popover = [[LLPopoverController alloc] initWithContentViewController:contentController
                                                                didShowHandler:nil
                                                                didHideHandler:nil];
         

@@ -28,7 +28,7 @@
 
 #import "LLPopoverView.h"
 #import "LLUtils.h"
-#import "LLPopover.h"
+#import "LLPopoverController.h"
 #import "LLPopoverLayout.h"
 
 
@@ -51,7 +51,7 @@
     _popoverLayout = nil;
 }
 
-- (id)initWithPopover:(LLPopover *)popover popoverLayout:(LLPopoverLayout *)popoverLayout
+- (id)initWithPopover:(LLPopoverController *)popover popoverLayout:(LLPopoverLayout *)popoverLayout
 {
     if ( ! (self = [super initWithFrame:popoverLayout.popoverFrame]) ) return nil;
     

@@ -34,7 +34,7 @@ typedef void(^LLPopoverDidHideHandler)();
  
  It works just like UIPopover: create an instance passing a content view controller and present it from a rect or UIBarButtonItem.
  */
-@interface LLPopover : NSObject
+@interface LLPopoverController : NSObject
 
 
 + (UIColor *)defaultBorderColor;
