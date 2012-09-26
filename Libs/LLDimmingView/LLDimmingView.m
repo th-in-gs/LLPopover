@@ -25,7 +25,7 @@
 #import "LLDimmingView.h"
 
 
-@interface LLDimmingView ()
+@interface LLDimmingView () <UIGestureRecognizerDelegate>
 @property (nonatomic, copy) LLDimmingViewDisplayedBlock displayedBlock;
 @property (nonatomic, copy) LLDimmingViewTapBlock tapBlock;
 @end
@@ -60,6 +60,7 @@
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] init];
     [tapGesture addTarget:self action:@selector(handleTap:)];
+    tapGesture.delegate = self;
     [self addGestureRecognizer:tapGesture];
     
     return self;
@@ -120,6 +121,11 @@
 
 
 #pragma mark - Private methods
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    return [self hitTest:[touch locationInView:self] withEvent:nil] == self;
+}
 
 - (void)handleTap:(UITapGestureRecognizer *)gesture
 {
