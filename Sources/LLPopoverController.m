@@ -40,14 +40,12 @@
 const char * LLPopoverSelfIsVisibleObservationContext = "LLPopoverSelfIsVisibleObservationContext";
 
 @implementation LLPopoverController {
-    LLPopoverDidShowHandler _didShowHandler;
-    LLPopoverDidHideHandler _didHideHandler;
-    
     LLDimmingView *_dimmingView;
     LLPopoverView *_popoverView;
 }
 
 // public
+@synthesize delegate=_delegate;
 @synthesize popoverLayout=_popoverLayout;
 @synthesize contentViewController=_contentViewController;
 @synthesize isVisible=_isVisible;
@@ -59,15 +57,6 @@ const char * LLPopoverSelfIsVisibleObservationContext = "LLPopoverSelfIsVisibleO
 
 #pragma mark - Class lifecycle
 
-- (void)dealloc
-{
-    [self removeObserver:self
-              forKeyPath:@"isVisible"
-                 context:(void *)LLPopoverSelfIsVisibleObservationContext];
-    
-    _didShowHandler = nil;
-    _didHideHandler = nil;
-}
 
 - (id)init
 {
@@ -85,19 +74,12 @@ const char * LLPopoverSelfIsVisibleObservationContext = "LLPopoverSelfIsVisibleO
     
     _isVisible = NO;
     
-    [self addObserver:self
-           forKeyPath:@"isVisible"
-              options:NSKeyValueObservingOptionNew
-              context:(void *)LLPopoverSelfIsVisibleObservationContext];
-    
     return self;
 }
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController
-              didShowHandler:(LLPopoverDidHideHandler)didShowHandler
-              didHideHandler:(LLPopoverDidHideHandler)didHideHandler
 {
-    self = [self init];
+    if ( !(self = [self init]) ) return nil;
     
     self.contentViewController = contentViewController;
     _popoverLayout = [[LLPopoverLayout alloc] init];
@@ -110,44 +92,10 @@ const char * LLPopoverSelfIsVisibleObservationContext = "LLPopoverSelfIsVisibleO
         contentViewController.contentSizeForViewInPopover.height
     };
     self.contentViewController.view.frame = contentFrame;
-    
-    _didShowHandler = didShowHandler;
-    _didHideHandler = didHideHandler;
-    
+
     return self;
 }
 
-+ (id)popoverWithContentViewController:(UIViewController *)contentViewController
-                 didShowHandler:(LLPopoverDidHideHandler)didShowHandler
-                 didHideHandler:(LLPopoverDidHideHandler)didHideHandler
-{
-    id popover = [[self alloc] initWithContentViewController:contentViewController
-                                       didShowHandler:didShowHandler
-                                       didHideHandler:didHideHandler];
-    
-    return popover;
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if (context == LLPopoverSelfIsVisibleObservationContext)
-    {
-        if (self.isVisible)
-        {
-            if (_didShowHandler)
-            {
-                _didShowHandler();
-            }
-        }
-        else
-        {
-            if (_didHideHandler)
-            {
-                _didHideHandler();
-            }
-        }
-    }
-}
 
 #pragma mark - Public methods
 
@@ -212,35 +160,42 @@ const char * LLPopoverSelfIsVisibleObservationContext = "LLPopoverSelfIsVisibleO
                         animations:^{
                             [_dimmingView addSubview:_popoverView];
                         }
-                        completion:^(BOOL finished) {
-                        }];
+                        completion:nil];
     }
     self.isVisible = YES;
 }
 
 - (void)dismissPopoverAnimated:(BOOL)animated
 {
-    [_dimmingView hideAnimated:NO];
-    
-    if (!animated)
-    {
-        [_popoverView removeFromSuperview];
-        [_dimmingView removeFromSuperview];
+    id<LLPopoverControllerDelegate>delegate = self.delegate;
+    if(!delegate || [delegate LLPopoverControllerShouldDismissPopover:self]) {
+        [_dimmingView hideAnimated:NO];
         
-        self.isVisible = NO;
-    }
-    else
-    {
-        [UIView transitionWithView:_dimmingView.superview
-                          duration:1.0f / 3.0f
-                           options:UIViewAnimationOptionTransitionCrossDissolve
-                        animations:^{
-                            [_popoverView removeFromSuperview];
-                            [_dimmingView removeFromSuperview];
-                        }
-                        completion:^(BOOL finished) {
-                            self.isVisible = NO;
-                        }];
+        void(^completionBlock)(BOOL) = ^(BOOL finished){
+            self.isVisible = NO;
+            if(delegate) {
+                [delegate LLPopoverControllerDidDismissPopover:self];
+            }
+        };
+        
+        if (!animated)
+        {
+            [_popoverView removeFromSuperview];
+            [_dimmingView removeFromSuperview];
+            
+            completionBlock(YES);
+        }
+        else
+        {
+            [UIView transitionWithView:_dimmingView.superview
+                              duration:1.0f / 3.0f
+                               options:UIViewAnimationOptionTransitionCrossDissolve
+                            animations:^{
+                                [_popoverView removeFromSuperview];
+                                [_dimmingView removeFromSuperview];
+                            }
+                            completion:completionBlock];
+        }
     }
 }
 

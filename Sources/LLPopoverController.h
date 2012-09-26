@@ -26,9 +26,7 @@
 
 #import "LLPopoverLayout.h"
 
-typedef void(^LLPopoverDidShowHandler)();
-typedef void(^LLPopoverDidHideHandler)();
-
+@protocol LLPopoverControllerDelegate;
 
 /** LLPopover is a component that mimic the iPad popover on the iPhone.
  
@@ -39,6 +37,7 @@ typedef void(^LLPopoverDidHideHandler)();
 
 + (UIColor *)defaultBorderColor;
 
+@property (nonatomic, weak) id<LLPopoverControllerDelegate> delegate;
 
 /** The view controller that will be visible inside the popover */
 @property (nonatomic, strong, readonly) UIViewController *contentViewController;
@@ -55,13 +54,7 @@ typedef void(^LLPopoverDidHideHandler)();
 @property (nonatomic, strong) UIColor *borderColor;
 
 
-- (id)initWithContentViewController:(UIViewController *)contentViewController
-              didShowHandler:(LLPopoverDidHideHandler)didShowHandler
-              didHideHandler:(LLPopoverDidHideHandler)didHideHandler;
-
-+ (id)popoverWithContentViewController:(UIViewController *)contentViewController
-                 didShowHandler:(LLPopoverDidHideHandler)didShowHandler
-                 didHideHandler:(LLPopoverDidHideHandler)didHideHandler;
+- (id)initWithContentViewController:(UIViewController *)contentViewController;
 
 /** display the popover from a UIBarButtonItem
  
@@ -88,3 +81,17 @@ typedef void(^LLPopoverDidHideHandler)();
 - (void)dismissPopoverAnimated:(BOOL)animated;
 
 @end
+
+
+@protocol LLPopoverControllerDelegate <NSObject>
+
+/* Called on the delegate when the popover controller will dismiss the popover. Return NO to prevent the dismissal of the view.
+ */
+- (BOOL)LLPopoverControllerShouldDismissPopover:(LLPopoverController *)popoverController;
+
+/* Called on the delegate when the user has taken action to dismiss the popover. This is not called when -dismissPopoverAnimated: is called directly.
+ */
+- (void)LLPopoverControllerDidDismissPopover:(LLPopoverController *)popoverController;
+
+@end
+

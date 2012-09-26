@@ -11,7 +11,7 @@
 
 #import <LLPopover/LLPopoverController.h>
 
-@interface LLPTViewController () <UIGestureRecognizerDelegate>
+@interface LLPTViewController () <UIGestureRecognizerDelegate, UIPopoverControllerDelegate, LLPopoverControllerDelegate>
 
 @end
 
@@ -27,9 +27,8 @@
     
     if([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPad ||
        (_tapCount % 2) == 1) {
-        LLPopoverController *popover = [[LLPopoverController alloc] initWithContentViewController:contentController
-                                                               didShowHandler:nil
-                                                               didHideHandler:nil];
+        LLPopoverController *popover = [[LLPopoverController alloc] initWithContentViewController:contentController];
+        popover.delegate = self;
         
         if((_tapCount % 4) == 0) {
             popover.borderColor = [UIColor brownColor];
@@ -42,6 +41,8 @@
         _popover = popover;
     } else {
         UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:contentController];
+        popover.delegate = self;
+        
         [popover presentPopoverFromRect:(CGRect){ [sender locationInView:self.view], { 1, 1 } }
                                  inView:self.view
                permittedArrowDirections:UIPopoverArrowDirectionUp | UIPopoverArrowDirectionDown
@@ -51,6 +52,40 @@
     }
     
     ++_tapCount;
+}
+
+
+- (BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController
+{
+    if(rand() / (RAND_MAX / 2)) {
+        NSLog(@"Dismissing UIPopover!");
+        return YES;
+    } else {
+        NSLog(@"Not dismissing UIPpover!");
+        return NO;
+    }
+}
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    NSLog(@"UIPopover dismissed!");
+}
+
+
+- (BOOL)LLPopoverControllerShouldDismissPopover:(LLPopoverController *)popoverController
+{
+    if(rand() / (RAND_MAX / 2)) {
+        NSLog(@"Dismissing LLPopover!");
+        return YES;
+    } else {
+        NSLog(@"Not dismissing LLPopover!");
+        return NO;
+    }
+}
+
+- (void)LLPopoverControllerDidDismissPopover:(LLPopoverController *)popoverController
+{
+    NSLog(@"LLPopover dismissed!");
 }
 
 @end
