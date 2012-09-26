@@ -168,12 +168,14 @@ const char * LLPopoverSelfIsVisibleObservationContext = "LLPopoverSelfIsVisibleO
 - (void)dismissPopoverAnimated:(BOOL)animated
 {
     id<LLPopoverControllerDelegate>delegate = self.delegate;
-    if(!delegate || [delegate LLPopoverControllerShouldDismissPopover:self]) {
+    if(!delegate ||
+       ![delegate respondsToSelector:@selector(LLPopoverControllerShouldDismissPopover:)] ||
+       [delegate LLPopoverControllerShouldDismissPopover:self]) {
         [_dimmingView hideAnimated:NO];
         
         void(^completionBlock)(BOOL) = ^(BOOL finished){
             self.isVisible = NO;
-            if(delegate) {
+            if(delegate && [delegate respondsToSelector:@selector(LLPopoverControllerDidDismissPopover:)]) {
                 [delegate LLPopoverControllerDidDismissPopover:self];
             }
         };

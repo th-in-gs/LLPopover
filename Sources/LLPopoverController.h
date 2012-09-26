@@ -85,6 +85,7 @@
 
 @protocol LLPopoverControllerDelegate <NSObject>
 
+@optional
 /* Called on the delegate when the popover controller will dismiss the popover. Return NO to prevent the dismissal of the view.
  */
 - (BOOL)LLPopoverControllerShouldDismissPopover:(LLPopoverController *)popoverController;
